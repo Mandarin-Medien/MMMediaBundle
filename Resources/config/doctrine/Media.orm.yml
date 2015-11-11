@@ -1,0 +1,37 @@
+MandarinMedien\MMMediaBundle\Entity\Media:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        description:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+        copyright:
+            type: string
+            length: 150
+        author:
+            type: string
+            length: 100
+        mediaType:
+            type: string
+            length: 100
+        mediaTypeReference:
+            type: string
+            length: 150
+        mediaTypeMetadata:
+            type: array
+
+
+    lifecycleCallbacks: {  }
