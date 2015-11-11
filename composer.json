@@ -1,0 +1,33 @@
+{
+  "name" : "mandarinmedien/mmmmediabundle",
+  "description" : "YAMB -> Yet another Media bundle",
+  "type" : "symfony-bundle",
+  "authors" : [{
+    "name" : "Christof",
+    "email" : "ch@mandarin-medien.de"
+  },{
+    "name" : "Toni",
+    "email" : "tg@mandarin-medien.de"
+  }],
+  "keywords" : [
+    "media bundle"
+  ],
+  "license" : [
+    "MIT"
+  ],
+  "require" : {
+  },
+  "autoload" : {
+    "psr-0" : {
+      "MandarinMedien\\MMMediaBundle" : ""
+    }
+  },
+  "target-dir" : "MandarinMedien/MMMediaBundle",
+  "repositories" : [{
+  }],
+  "extra" : {
+    "branch-alias" : {
+      "dev-master" : "0.1-dev"
+    }
+  }
+}
