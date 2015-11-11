@@ -2,6 +2,7 @@
 
 Append to app/AppKernel.php
 
+```
 ...
     public function registerBundles()
     {
@@ -13,11 +14,14 @@ Append to app/AppKernel.php
     ....
     }
 ...
+```
 
 Append to App/config/routing.yml
 
+```
 ...
 mm_media:
     resource: "@MMMediaBundle/Resources/config/routing.yml"
     prefix:   /mmmedia
 ...
+```
