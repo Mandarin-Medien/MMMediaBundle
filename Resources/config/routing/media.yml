@@ -1,0 +1,30 @@
+media:
+    path:     /
+    defaults: { _controller: "MMMediaBundle:Media:index" }
+
+media_show:
+    path:     /{id}/show
+    defaults: { _controller: "MMMediaBundle:Media:show" }
+
+media_new:
+    path:     /new
+    defaults: { _controller: "MMMediaBundle:Media:new" }
+
+media_create:
+    path:     /create
+    defaults: { _controller: "MMMediaBundle:Media:create" }
+    methods:  POST
+
+media_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MMMediaBundle:Media:edit" }
+
+media_update:
+    path:     /{id}/update
+    defaults: { _controller: "MMMediaBundle:Media:update" }
+    methods:  [POST, PUT]
+
+media_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MMMediaBundle:Media:delete" }
+    methods:  [POST, DELETE]
