@@ -15,6 +15,6 @@ class VideoMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new VideoMediaType();
+        return new VideoMediaType($data);
     }
 }

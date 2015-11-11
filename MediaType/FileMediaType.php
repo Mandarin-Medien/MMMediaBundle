@@ -16,7 +16,7 @@ class FileMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new FileMediaType();
+        return new FileMediaType($data);
     }
 
 }

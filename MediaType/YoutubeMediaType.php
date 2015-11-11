@@ -15,6 +15,6 @@ class YoutubeMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new YoutubeMediaType();
+        return new YoutubeMediaType($data);
     }
 }

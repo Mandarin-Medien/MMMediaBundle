@@ -27,7 +27,7 @@ abstract class BaseMediaType implements MediaTypeInterface
 
     public function getName()
     {
-        return self::NAME;
+        return static::NAME;
     }
 
 
@@ -53,6 +53,11 @@ abstract class BaseMediaType implements MediaTypeInterface
     {
         $this->raw = $raw;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return static::NAME;
     }
 
 
