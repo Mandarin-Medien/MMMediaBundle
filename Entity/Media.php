@@ -9,7 +9,7 @@
 namespace MandarinMedien\MMMediaBundle\Entity;
 
 
-use MandarinMedien\MMMediaBundle\MediaInterface;
+use MandarinMedien\MMMediaBundle\Model\MediaInterface;
 
 class Media implements MediaInterface
 {

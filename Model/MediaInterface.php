@@ -6,7 +6,7 @@
  * Time: 14:06
  */
 
-namespace MandarinMedien\MMMediaBundle;
+namespace MandarinMedien\MMMediaBundle\Model;
 
 
 interface MediaInterface
