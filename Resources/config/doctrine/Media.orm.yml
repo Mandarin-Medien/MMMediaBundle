@@ -31,7 +31,7 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             type: string
             length: 150
         mediaTypeMetadata:
-            type: array
+            type: json_array
 
 
     lifecycleCallbacks: {  }

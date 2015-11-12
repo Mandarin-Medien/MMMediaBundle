@@ -1,0 +1,3 @@
+services:
+    mm_media.mediatype.manager:
+        class: "MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager"

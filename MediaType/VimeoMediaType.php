@@ -15,6 +15,6 @@ class VimeoMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new VimeoMediaType($data);
+        return new self($data);
     }
 }

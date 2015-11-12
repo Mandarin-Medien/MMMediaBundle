@@ -15,6 +15,17 @@ class VideoMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new VideoMediaType($data);
+        $allowedExtensios = array(
+            'mp4',
+            'wmv',
+            'm4v',
+            'mov'
+        );
+
+        if(in_array(pathinfo($data, PATHINFO_EXTENSION), $allowedExtensios)) {
+            return new self($data);
+        } else {
+            return null;
+        }
     }
 }

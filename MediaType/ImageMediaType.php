@@ -15,6 +15,18 @@ class ImageMediaType extends BaseMediaType
 
     static function check($data)
     {
-        return new ImageMediaType($data);
+        $allowedExtensions = array(
+            'png',
+            'jpeg',
+            'jpg',
+            'gif',
+            'tiff'
+        );
+
+        if(in_array(strtolower(pathinfo($data, PATHINFO_EXTENSION)), $allowedExtensions)) {
+            return new self($data);
+        } else {
+            return null;
+        }
     }
 }

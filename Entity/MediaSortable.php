@@ -89,7 +89,7 @@ class MediaSortable
      */
     public function __get($name)
     {
-        return call_user_func(array($this->getMedia(), 'get' . ucfirst($name)), func_get_args());
+        return call_user_func(array($this->getMedia(), 'get' . ucfirst($name)));
     }
 
     /**
@@ -100,6 +100,16 @@ class MediaSortable
     public function __set($name, $value)
     {
         return call_user_func(array($this->getMedia(), 'set' . ucfirst($name)), $value);
+    }
+
+    /**
+     * function passtrough to $this->media
+     *
+     * @return mixed
+     */
+    public function __call($func, $args)
+    {
+        return call_user_func(array($this->getMedia(), $func), $args);
     }
 }
 
