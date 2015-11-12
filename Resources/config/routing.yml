@@ -1,3 +1,7 @@
 mm_media_media:
     resource: "@MMMediaBundle/Resources/config/routing/media.yml"
     prefix:   /media
+
+mm_media_default:
+    resource: "@MMMediaBundle/Resources/config/routing/default.yml"
+    prefix:   /default

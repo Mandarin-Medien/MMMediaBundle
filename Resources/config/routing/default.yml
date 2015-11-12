@@ -1,0 +1,4 @@
+media_default_index:
+    path:     /index
+    defaults: { _controller: "MMMediaBundle:Default:index" }
+    methods:  [GET, DELETE]
