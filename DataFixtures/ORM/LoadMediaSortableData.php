@@ -31,10 +31,13 @@ class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $manager)
     {
+        /**
+         * creates a Media of type mm_media.type.image
+         */
         $media = new Media();
         $media->setAuthor('Max Mustermann');
         $media->setCopyright('Mustermann gGmbH');
-        $media->setDescription('Das ist eine Beschreibung');
+        $media->setDescription('This is a Media description.');
         $media->setName('Media-Name');
 
         $media->setMediaTypeMetadata(Array('foo'=>'bar'));
@@ -42,7 +45,9 @@ class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInt
         $media->setMediaTypeReference('image.jpg');
 
 
-
+        /**
+         * creates a MediaSortable
+         */
         $mediaSortable1 = new MediaSortable();
         $mediaSortable1->setPosition(1);
         $mediaSortable1->setMedia($media);
