@@ -22,7 +22,17 @@ class MMMediaExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
+        #$loader->load('config.yml');
+
+        $this->configureMediaTypes($container, $config);
+    }
+
+
+    public function configureMediaTypes(ContainerBuilder $container, $config)
+    {
+        $container->getDefinition('mm_media.mediatype.manager')
+            ->replaceArgument(0, $config['media_types']['types']);
     }
 }

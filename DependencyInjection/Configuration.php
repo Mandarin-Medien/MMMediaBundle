@@ -38,11 +38,11 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('types')
                         ->prototype('scalar')->end()
                         ->defaultValue(array(
-                            'MandarinMedien\\MMMediaBundle\\MediaTypes\\ImageMediaType',
-                            'MandarinMedien\\MMMediaBundle\\MediaTypes\\FileMediaType',
-                            'MandarinMedien\\MMMediaBundle\\MediaTypes\\VideoMediaType',
-                            'MandarinMedien\\MMMediaBundle\\MediaTypes\\YoutubeMediaType',
-                            'MandarinMedien\\MMMediaBundle\\MediaTypes\\VimeoMediaType'
+                            'MandarinMedien\\MMMediaBundle\\MediaType\\ImageMediaType',
+                            'MandarinMedien\\MMMediaBundle\\MediaType\\FileMediaType',
+                            'MandarinMedien\\MMMediaBundle\\MediaType\\VideoMediaType',
+                            'MandarinMedien\\MMMediaBundle\\MediaType\\YoutubeMediaType',
+                            'MandarinMedien\\MMMediaBundle\\MediaType\\VimeoMediaType'
                         ))
                         ->end()
 //                      ->arrayNode('allowed')

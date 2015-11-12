@@ -19,6 +19,13 @@ class MediaTypeManager
      */
     protected $mediaTypes;
 
+    function __construct(Array $mediaTypes)
+    {
+        foreach ($mediaTypes as $mediaType) {
+            $this->registerMediaType($mediaType);
+        }
+    }
+
 
     /**
      * register new mediaType

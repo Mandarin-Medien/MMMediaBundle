@@ -15,23 +15,6 @@ class AddMediaTypeCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        //load the configured MediaTypes
-        $media_types = $container->getDefinitions('mm_media.media_types.types');
-
-        if ( count($media_types)>0)
-        {
-            //load the MediaTypeManger by service
-            $mediaTypeManager = $container->get('mm_media.mediatype.manager');
-
-            if($mediaTypeManager)
-            {
-                //assign MediaTypes to the Manager
-                $mediaTypeManager->setMediaTypes($media_types);
-            }
-
-        }
-
     }
-
 
 }
