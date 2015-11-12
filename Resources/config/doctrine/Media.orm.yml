@@ -34,4 +34,6 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             type: json_array
 
 
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        prePersist: [ prePersist ]
+        preUpdate: [ preUpdate ]

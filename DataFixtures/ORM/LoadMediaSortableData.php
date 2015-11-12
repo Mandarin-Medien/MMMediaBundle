@@ -1,0 +1,62 @@
+<?php
+
+namespace MandarinMedien\EverletterBundle\DataFixtures\ORM;
+
+
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use MandarinMedien\MMMediaBundle\Entity\Media;
+use MandarinMedien\MMMediaBundle\Entity\MediaSortable;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
+class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+{
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function load(ObjectManager $manager)
+    {
+        $media = new Media();
+        $media->setAuthor('Max Mustermann');
+        $media->setCopyright('Mustermann gGmbH');
+        $media->setDescription('Das ist eine Beschreibung');
+        $media->setName('Media-Name');
+
+        $media->setMediaTypeMetadata(Array('foo'=>'bar'));
+        $media->setMediaType('mm_media.type.image');
+        $media->setMediaTypeReference('image.jpg');
+
+
+
+        $mediaSortable1 = new MediaSortable();
+        $mediaSortable1->setPosition(1);
+        $mediaSortable1->setMedia($media);
+
+
+        $this->addReference('mediaSortable-1', $mediaSortable1);
+
+        $manager->persist($mediaSortable1);
+
+        $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 1; // the order in which fixtures will be loaded
+    }
+}
