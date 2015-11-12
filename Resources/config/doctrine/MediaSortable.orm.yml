@@ -13,4 +13,6 @@ MandarinMedien\MMMediaBundle\Entity\MediaSortable:
     manyToOne:
         media:
             targetEntity: MandarinMedien\MMMediaBundle\Entity\Media
-    lifecycleCallbacks: {  }
+            cascade:
+                - persist
+    lifecycleCallbacks: {}
