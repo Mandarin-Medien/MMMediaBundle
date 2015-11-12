@@ -1,0 +1,16 @@
+MandarinMedien\MMMediaBundle\Entity\MediaSortable:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        position:
+            type: integer
+    manyToOne:
+        media:
+            targetEntity: MandarinMedien\MMMediaBundle\Entity\Media
+    lifecycleCallbacks: {  }
