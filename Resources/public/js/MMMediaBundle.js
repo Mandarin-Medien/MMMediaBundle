@@ -12,6 +12,7 @@ Dropzone.autoDiscover = false;
 /**
  * Helper to boot up the media bundle dropzone at the right moment
  */
+
 (function(exports, d) {
     function MMMediaBundleDomReady(fn, context) {
 
@@ -34,28 +35,15 @@ Dropzone.autoDiscover = false;
     exports.MMMediaBundleDomReady = MMMediaBundleDomReady;
 })(window, document);
 
-
-MMMediaBundleDomReady(function(event) {
-    console.log('MMMediaBundleDomReady');
-
-    var elements = document.getElementsByClassName('mmmb-dropzone');
-
-    console.log(elements);
-
-    for (var i = 0; i < elements.length; i++){
-
-        console.log(i);
-        var dropzone = elements[i];
-
-        var url = dropzone.getAttribute('data-url');
-        var id = dropzone.getAttribute('id');
-
-        console.log(id,url);
-
-        MMMediaBundleFileDropzone("#"+id,url);
-    }
-});
-
+/**
+ * Set ups a given dropzone to be compatible with the MMMediaBundleWidget
+ *
+ * @param _id
+ * @param _url
+ * @returns DropZone
+ *
+ * @constructor
+ */
 function MMMediaBundleFileDropzone(_id,_url)
 {
     var myDropzone = new Dropzone(_id,
@@ -135,5 +123,30 @@ function MMMediaBundleFileDropzone(_id,_url)
         }
     );
 
-    console.log(myDropzone);
+    return myDropzone;
 }
+
+
+/**
+ * Start loading the dom is rdy
+ */
+MMMediaBundleDomReady(function(event) {
+    console.log('MMMediaBundleDomReady');
+
+    var elements = document.getElementsByClassName('mmmb-dropzone');
+
+    console.log(elements);
+
+    for (var i = 0; i < elements.length; i++){
+
+        console.log(i);
+        var dropzone = elements[i];
+
+        var url = dropzone.getAttribute('data-url');
+        var id = dropzone.getAttribute('id');
+
+        console.log(id,url);
+
+        MMMediaBundleFileDropzone("#"+id,url);
+    }
+});

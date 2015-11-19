@@ -1,12 +1,10 @@
 {% block upload_widget %}
     {% spaceless %}
-
         {% block file_upload %}
             <label id="dz_{{ id }}_label">
                 <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
                      data-url="{{ path('media_upload') }}"></div>
             </label>
         {% endblock %}
-
     {% endspaceless %}
 {% endblock %}
