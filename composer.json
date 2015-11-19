@@ -16,8 +16,7 @@
     "MIT"
   ],
   "require" : {
-    "KnpLabs/Gaufrette" : "dev-master",
-    "symfony/framework-bundle": "2.*"
+    "KnpLabs/Gaufrette" : "dev-master"
   },
   "autoload" : {
     "psr-0" : {
