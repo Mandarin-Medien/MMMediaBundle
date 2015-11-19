@@ -44,7 +44,7 @@ Dropzone.autoDiscover = false;
  *
  * @constructor
  */
-function MMMediaBundleFileDropzone(_id,_url)
+function MMMediaBundleFileDropzone(_id,_url,_fieldName)
 {
     var myDropzone = new Dropzone(_id,
         { // The camelized version of the ID of the form element
@@ -77,7 +77,7 @@ function MMMediaBundleFileDropzone(_id,_url)
 
                             var reference = document.createElement('input')
                             reference.type = 'hidden';
-                            reference.name = 'appbundle_article[medias][]';
+                            reference.name = _fieldName;
                             reference.value = response.data[file].id;
 
                             files[file].previewElement.appendChild(reference);
@@ -143,10 +143,11 @@ MMMediaBundleDomReady(function(event) {
         var dropzone = elements[i];
 
         var url = dropzone.getAttribute('data-url');
+        var fieldName = dropzone.getAttribute('data-field-name');
         var id = dropzone.getAttribute('id');
 
         console.log(id,url);
 
-        MMMediaBundleFileDropzone("#"+id,url);
+        MMMediaBundleFileDropzone("#"+id,url,fieldName);
     }
 });

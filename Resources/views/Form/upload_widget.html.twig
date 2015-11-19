@@ -3,7 +3,9 @@
         {% block file_upload %}
             <label id="dz_{{ id }}_label">
                 <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
-                     data-url="{{ path('media_upload') }}"></div>
+                     data-url="{{ path('media_upload') }}"
+                     data-field-name="{{ full_name }}"
+                ></div>
             </label>
         {% endblock %}
     {% endspaceless %}
