@@ -1,91 +1,12 @@
 {% block upload_widget %}
     {% spaceless %}
 
-        <script type="text/javascript">
-
-            var sendrequest = function()
-            {
-
-                var form = this;
-
-                var filesinput = document.getElementById('files');
-                var files = filesinput.files;
-
-
-                var formData = new FormData();
-
-                for(var file in files) {
-                    formData.append('files[]', files[file]);
-                }
-
-                var request = new XMLHttpRequest();
-
-                request.open('POST',"{{ path('media_upload') }}", true);
-                request.send(formData);
-
-                request.onload = function(e) {
-                    if(request.status == 200){
-
-                        var response = JSON.parse(this.response);
-
-                        if(     response
-                            &&  response.success
-                        ) {
-                            for(file in response.data) {
-
-                                var reference = document.createElement('input')
-                                reference.type = 'hidden';
-                                reference.name = 'appbundle_article[medias][]';
-                                reference.value = response.data[file].id;
-
-                                document.getElementById('references').appendChild(reference);
-
-
-                                var img = new Image()
-                                img.src = '/media/'+response.data[file].path;
-
-                                document.getElementById('media-list-container').appendChild(img);
-                            }
-
-                        }
-                    }
-                    else if(request.status == 400) {
-                        alert('There was an error 400')
-                    }
-                    else {
-                        alert('something else other than 200 was returned')
-                    }
-                }
-            }
-
-        </script>
-
-
-        {% block fileuplaod %}
-            <label>
-                Datei
-                <input id="files" type="file" name="files[]" {% if form.vars.multiple %}multiple{% endif %}>
+        {% block file_upload %}
+            <label id="dz_{{ id }}_label">
+                <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
+                     data-url="{{ path('media_upload') }}"></div>
             </label>
         {% endblock %}
-
-        {% block urlupload %}
-            <label>
-                Remote:
-                <input type="text" name="url">
-            </label>
-        {% endblock %}
-
-        {% block submit %}
-            <button onclick="sendrequest(); return false;">Hinfort mit dem Unrat!</button>
-        {% endblock %}
-
-        {% block media %}
-            <div id="media-list-container"></div>
-        {% endblock %}
-
-        <div id="references">
-
-        </div>
 
     {% endspaceless %}
 {% endblock %}
