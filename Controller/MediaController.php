@@ -221,4 +221,11 @@ class MediaController extends Controller
             ->getForm()
         ;
     }
+
+
+    public function uploadAction(Request $request)
+    {
+        var_dump($request);
+    }
+
 }

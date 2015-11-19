@@ -11,9 +11,11 @@ MandarinMedien\MMMediaBundle\Entity\Media:
         name:
             type: string
             length: 255
+            nullable: true
         description:
             type: string
             length: 255
+            nullable: true
         createdAt:
             type: datetime
         updatedAt:
@@ -21,9 +23,11 @@ MandarinMedien\MMMediaBundle\Entity\Media:
         copyright:
             type: string
             length: 150
+            nullable: true
         author:
             type: string
             length: 100
+            nullable: true
         mediaType:
             type: string
             length: 100
@@ -32,6 +36,7 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             length: 150
         mediaTypeMetadata:
             type: json_array
+            nullable: true
 
 
     lifecycleCallbacks:

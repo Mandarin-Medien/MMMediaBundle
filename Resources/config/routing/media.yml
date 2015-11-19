@@ -28,3 +28,8 @@ media_delete:
     path:     /{id}/delete
     defaults: { _controller: "MMMediaBundle:Media:delete" }
     methods:  [POST, DELETE]
+
+media_upload:
+    path:     /upload
+    defaults: { _controller: "MMMediaBundle:Upload:upload" }
+    methods:  [POST]

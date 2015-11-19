@@ -1,0 +1,65 @@
+{% block upload_widget %}
+    {% spaceless %}
+
+        <script type="text/javascript">
+
+            var sendrequest = function(data)
+            {
+
+                var form = this;
+
+                var filesinput = document.getElementById('files');
+                var files = filesinput.files;
+
+                console.log(files);
+
+                var formData = new FormData();
+                formData.append('files', files);
+
+
+                var request = new XMLHttpRequest();
+
+                request.open('post',"{{ path('media_upload') }}", true);
+                request.send(formData);
+
+                request.onload = function() {
+                    if(request.status == 200){
+                        console.log(request)
+                    }
+                    else if(request.status == 400) {
+                        alert('There was an error 400')
+                    }
+                    else {
+                        alert('something else other than 200 was returned')
+                    }
+                }
+            }
+
+        </script>
+
+        <form enctype="multipart/form-data" name="" method="post" action="{{ path('media_upload') }}" onsubmit="sendrequest(this); return false;">
+
+            {% block fileuplaod %}
+                <label>
+                    Datei
+                    <input id="files" type="file" name="files[]" {% if form.vars.multiple %}multiple{% endif %}>
+                </label>
+            {% endblock %}
+
+            {% block urlupload %}
+                <label>
+                    Remote:
+                    <input type="text" name="url">
+                </label>
+            {% endblock %}
+
+            {% block submit %}
+                <button type="submit">Hinfort mit dem Unrat!</button>
+            {% endblock %}
+
+            {% block media %}
+                <div class="media-list-container"></div>
+            {% endblock %}
+        </form>
+    {% endspaceless %}
+{% endblock %}

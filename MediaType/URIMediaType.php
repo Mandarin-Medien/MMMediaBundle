@@ -9,16 +9,14 @@
 namespace MandarinMedien\MMMediaBundle\MediaType;
 
 
-use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Model\MediaTypeInterface;
 
-abstract class BaseMediaType implements MediaTypeInterface
+abstract class URIMediaType implements MediaTypeInterface
 {
 
-    const NAME = 'mm.media.type.base';
+    const NAME = 'mm.media.type.uri';
 
     protected $raw;
-    protected $media;
 
 
     public function __construct($data)
@@ -41,21 +39,13 @@ abstract class BaseMediaType implements MediaTypeInterface
 
     public function getEntity()
     {
-        if(!$this->media)
-        {
-            $this->media = (new Media())
-                ->setMediaType($this)
-                ->setMediaTypeReference($this->getReference())
-                ->setMediaTypeMetadata($this->getMetaData());
-        }
-
-        return $this->media;
+        // TODO: Implement getEntity() method.
     }
 
 
     public function getMetaData()
     {
-       return array();
+        // TODO: Implement getMetaData() method.
     }
 
 

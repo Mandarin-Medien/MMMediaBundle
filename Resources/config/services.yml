@@ -1,4 +1,9 @@
 services:
     mm_media.mediatype.manager:
-        class: "MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager"
+        class: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
         arguments: ['mm_media.media_types.types']
+
+    form.type.upload:
+        class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
+        tags:
+            - {name: form.type, alias: upload}

@@ -9,7 +9,9 @@
 namespace MandarinMedien\MMMediaBundle\Entity;
 
 
+use MandarinMedien\MMMediaBundle\Form\MediaType;
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
+use MandarinMedien\MMMediaBundle\Model\MediaTypeInterface;
 
 class Media implements MediaInterface
 {
@@ -49,7 +51,7 @@ class Media implements MediaInterface
     protected $updatedAt;
 
     /**
-     * @var string
+     * @var MediaTypeInterface
      */
     protected $mediaType;
 
@@ -191,7 +193,7 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return string
+     * @return MediaTypeInterface
      */
     public function getMediaType()
     {
@@ -199,10 +201,10 @@ class Media implements MediaInterface
     }
 
     /**
-     * @param string $mediaType
+     * @param MediaTypeInterface $mediaType
      * @return Media
      */
-    public function setMediaType($mediaType)
+    public function setMediaType(MediaTypeInterface $mediaType)
     {
         $this->mediaType = $mediaType;
         return $this;

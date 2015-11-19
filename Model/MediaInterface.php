@@ -110,19 +110,19 @@ interface MediaInterface
     public function setUpdatedAt($updatedAt);
 
     /**
-     * returns the MediaType key of the media file
+     * returns the MediaType the media file
      *
-     * @return string
+     * @return MediaTypeInterface
      */
     public function getMediaType();
 
     /**
-     * sets the MediaType key of the media file
+     * sets the MediaType the media file
      *
-     * @param string $mediaType
+     * @param MediaTypeInterface $mediaType
      * @return Media
      */
-    public function setMediaType($mediaType);
+    public function setMediaType(MediaTypeInterface $mediaType);
 
     /**
      * returns the MediaType Reference Id of the media file

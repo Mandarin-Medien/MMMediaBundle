@@ -16,6 +16,7 @@
     "MIT"
   ],
   "require" : {
+    "KnpLabs/Gaufrette" : "dev-master"
   },
   "autoload" : {
     "psr-0" : {

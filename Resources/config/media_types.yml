@@ -1,0 +1,9 @@
+  paramters:
+      mediatypes:
+          namespace: MandarinMedien\MMMediaBundle\MediaTypes
+          types:
+              image: ImageMediaType
+              file: FileMediaType
+              video: VideoMediaType
+              youtube: YoutubeMediaType
+              vimeo: VimeoMediaType
