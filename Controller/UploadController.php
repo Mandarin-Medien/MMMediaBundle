@@ -33,12 +33,12 @@ class UploadController extends Controller
     public function uploadAction(Request $request)
     {
 
-        return new JsonResponse($request);
+        //return new JsonResponse($request);
 
         // process the filebag
         $medias = array_merge(
             $this->processUploadedFiles($request->files),
-            $this->processUrls(array())
+            $this->processUrls(Array())
         );
 
 
@@ -111,7 +111,7 @@ class UploadController extends Controller
      * @param array $urls
      * @return array reference list of the urls
      */
-    protected  function processUrls(array $urls)
+    protected function processUrls(array $urls)
     {
         return array();
     }

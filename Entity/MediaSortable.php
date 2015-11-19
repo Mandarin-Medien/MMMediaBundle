@@ -111,5 +111,11 @@ class MediaSortable
     {
         return call_user_func(array($this->getMedia(), $func), $args);
     }
+
+
+    public function __toString()
+    {
+        return 'image'.$this->getId();
+    }
 }
 
