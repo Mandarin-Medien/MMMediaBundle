@@ -169,18 +169,18 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
                 //removes the temporaty added this event
                 myDropzone.off("addedfile", $this.appendHiddenEntityInput);
 
-
+                /**
+                 * loads Dragular to enable drag and drop functionality    
+                 */
                 if (_multiple) {
 
-                    var $dragula = dragula([document.querySelector( $id_dropzone_preview )],
+                    var $dragula = dragula([document.querySelector($id_dropzone_preview)],
                         {
-                            direction: 'horizontal'
+                            direction: 'horizontal',
+                            mirrorContainer: document.querySelector($id_dropzone_preview)
+
                         });
-                    console.log(document.querySelector(_id), $dragula);
-
                 }
-
-
             }
         }
     );
