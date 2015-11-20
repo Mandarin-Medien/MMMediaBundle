@@ -60,4 +60,24 @@ class UploadCollectionType extends AbstractType
     {
         return 'mmmedia_upload_collection';
     }
+
+    /**
+     * @param Media[] $medias
+     * @return string
+     */
+    public function getJsonFormatedMedias($medias)
+    {
+        $array = array();
+
+        foreach($medias as $media)
+            $array[] = array(
+                'id' => $media->getId(),
+                'name' => $media->getMediaTypeReference(),
+                'size' => false,
+                'type' => '',
+                'url' => "/media/".$media->getMediaTypeReference()
+            );
+
+        return json_encode($array);
+    }
 }
