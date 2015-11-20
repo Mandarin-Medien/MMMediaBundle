@@ -6,3 +6,16 @@ mm_media:
             - MandarinMedien\MMMediaBundle\MediaType\VideoMediaType
             - MandarinMedien\MMMediaBundle\MediaType\YoutubeMediaType
             - MandarinMedien\MMMediaBundle\MediaType\VimeoMediaType
+
+assetic:
+    assets:
+        mmmedia_assets_js:
+            inputs:
+                - '@MMMediaBundle/Resources/public/js/dropzone.4.2.0.min.js'
+                - '@MMMediaBundle/Resources/public/js/MMMediaBundle.js'
+        mmmedia_assets_css:
+            inputs:
+                - '@MMMediaBundle/Resources/public/css/dropzone.4.2.0.min.css'
+                - '@MMMediaBundle/Resources/public/css/MMMediaBundle.css'
+
+
