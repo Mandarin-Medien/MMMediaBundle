@@ -44,16 +44,16 @@ Dropzone.autoDiscover = false;
  *
  * @constructor
  */
-function MMMediaBundleFileDropzone(_id,_url,_fieldName)
+function MMMediaBundleFileDropzone(_id,_url,_fieldName,_multiple)
 {
     var myDropzone = new Dropzone(_id,
         { // The camelized version of the ID of the form element
             url: _url,
             // The configuration we've talked about above
             autoProcessQueue: true,
-            uploadMultiple: true,
-            parallelUploads: 100,
-            maxFiles: 100,
+            uploadMultiple: _multiple,
+            parallelUploads: ( (_multiple)?100:1 ) ,
+            maxFiles: ( (_multiple)?100:1 ) ,
             paramName: 'files',
             addRemoveLinks: true,
 
@@ -182,9 +182,22 @@ MMMediaBundleDomReady(function(event) {
         var fieldName = dropzone.getAttribute('data-field-name');
         var id = dropzone.getAttribute('id');
 
-        console.log(id,url);
 
-        MMMediaBundleFileDropzone("#"+id,url,fieldName);
+        /*
+         * @TODO: better bool check
+         */
+        var multiple = dropzone.getAttribute('data-multiple');
+
+        if( multiple=="false" || multiple=="" || multiple=="0")
+            multiple = false;
+        else
+            multiple = true;
+
+
+
+        console.log(id,url,multiple);
+
+        MMMediaBundleFileDropzone("#"+id,url,fieldName,multiple);
     }
 
     MMMediaBundleFileDropzoneInitiateEvents();

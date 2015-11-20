@@ -5,6 +5,7 @@
                 <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
                      data-url="{{ path('media_upload') }}"
                      data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
+                     data-multiple="{% if multiple %}true{% else %}false{% endif %}"
                 ></div>
             </label>
         {% endblock %}
