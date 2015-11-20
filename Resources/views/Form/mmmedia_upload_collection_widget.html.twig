@@ -1,15 +1,5 @@
 {% block mmmedia_upload_collection_widget %}
     {% spaceless %}
-        {% block file_upload %}
-            <label id="dz_{{ id }}_label">
-                <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
-                     data-url="{{ path('media_upload') }}"
-                     data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
-                     data-multiple="{% if multiple %}true{% else %}false{% endif %}"
-                     data-files="{{ value_media_json|e|raw }}"
-                ></div>
-            </label>
-
-        {% endblock %}
+        {{ block('mmmedia_upload_widget') }}
     {% endspaceless %}
 {% endblock %}
