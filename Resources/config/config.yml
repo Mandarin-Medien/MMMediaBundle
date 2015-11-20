@@ -16,5 +16,6 @@ assetic:
         mmmedia_assets_css:
             inputs:
                 - '@MMMediaBundle/Resources/public/css/dropzone.4.2.0.min.css'
+                - '@MMMediaBundle/Resources/public/css/MMMediaBundle.css'
 
 

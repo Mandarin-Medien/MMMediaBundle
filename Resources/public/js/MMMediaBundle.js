@@ -55,6 +55,7 @@ function MMMediaBundleFileDropzone(_id,_url,_fieldName)
             parallelUploads: 100,
             maxFiles: 100,
             paramName: 'files',
+            addRemoveLinks: true,
 
             // The setting up of the dropzone
             init: function () {
@@ -98,26 +99,26 @@ function MMMediaBundleFileDropzone(_id,_url,_fieldName)
                 this.on("addedfile", function(file) {
 
                     // Create the remove button
-                    var removeButton = Dropzone.createElement("<button>Remove file</button>");
-
-
-                    // Capture the Dropzone instance as closure.
-                    var _this = this;
-
-                    // Listen to the click event
-                    removeButton.addEventListener("click", function(e) {
-                        // Make sure the button click doesn't submit the form:
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        // Remove the file preview.
-                        _this.removeFile(file);
-                        // If you want to the delete the file on the server as well,
-                        // you can do the AJAX request here.
-                    });
-
-                    // Add the button to the file preview element.
-                    file.previewElement.appendChild(removeButton);
+                    //var removeButton = Dropzone.createElement('<button class="dz-remove-button">Remove file</button>');
+                    //
+                    //
+                    //// Capture the Dropzone instance as closure.
+                    //var _this = this;
+                    //
+                    //// Listen to the click event
+                    //removeButton.addEventListener("click", function(e) {
+                    //    // Make sure the button click doesn't submit the form:
+                    //    e.preventDefault();
+                    //    e.stopPropagation();
+                    //
+                    //    // Remove the file preview.
+                    //    _this.removeFile(file);
+                    //    // If you want to the delete the file on the server as well,
+                    //    // you can do the AJAX request here.
+                    //});
+                    //
+                    //// Add the button to the file preview element.
+                    //file.previewElement.appendChild(removeButton);
                 });
             }
         }
