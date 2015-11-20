@@ -13,7 +13,7 @@ Dropzone.autoDiscover = false;
  * Helper to boot up the media bundle dropzone at the right moment
  */
 
-(function(exports, d) {
+(function (exports, d) {
     function MMMediaBundleDomReady(fn, context) {
 
         function onReady(event) {
@@ -29,7 +29,7 @@ Dropzone.autoDiscover = false;
         }
 
         d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
-        d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+        d.attachEvent && d.attachEvent("onreadystatechange", onReadyIe);
     }
 
     exports.MMMediaBundleDomReady = MMMediaBundleDomReady;
@@ -44,160 +44,169 @@ Dropzone.autoDiscover = false;
  *
  * @constructor
  */
-function MMMediaBundleFileDropzone(_id,_url,_fieldName,_multiple)
-{
-    var myDropzone = new Dropzone(_id,
+function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
+
+    $this = this;
+
+    /**
+     * creates and DOM input which holds a Media-Entity ID
+     * @param _file
+     * @returns {Element}
+     */
+    this.getHiddenEntityInput = function (_file) {
+
+        if (!_file.id)
+            return;
+
+        var reference = document.createElement('input')
+        reference.type = 'hidden';
+        reference.name = _fieldName;
+        reference.value = _file.id;
+
+        return reference;
+    };
+
+    /**
+     * appends an DOM input to the related previewElement of the given file-element
+     * @param _file
+     */
+    this.appendHiddenEntityInput = function (_file) {
+
+        if (_file) {
+
+            var $reference = $this.getHiddenEntityInput(_file)
+
+            if ($reference)
+                _file.previewElement.appendChild($reference);
+        }
+    }
+
+    /**
+     * loads the Dropzone instance
+     */
+    this.dropzone = new Dropzone(_id,
         { // The camelized version of the ID of the form element
             url: _url,
             // The configuration we've talked about above
             autoProcessQueue: true,
-            uploadMultiple: _multiple,
-            parallelUploads: ( (_multiple)?100:1 ) ,
-            maxFiles: ( (_multiple)?100:1 ) ,
             paramName: 'files',
             addRemoveLinks: true,
 
+            uploadMultiple: _multiple,
+            parallelUploads: ( (_multiple) ? 100 : 1 ),
+            maxFiles: ( (_multiple) ? 100 : 1 ),
+
             // The setting up of the dropzone
             init: function () {
+
                 var myDropzone = this;
 
-                // Listen to the sendingmultiple event. In this case, it's the sendingmultiple event instead
-                // of the sending event because uploadMultiple is set to true.
-                this.on("sendingmultiple", function () {
-                    // Gets triggered when the form is actually being sent.
-                    // Hide the success button or the complete form.
-                });
-                this.on("successmultiple", function (files, response) {
+                /**
+                 * checks if its an mutiple field and adds the related event
+                 */
+                if (_multiple) {
 
-                    console.log("DropZone::successmultiple", files, response);
+                    /**
+                     * hooks the successmultiple event to append all hidden inputs which holds all tthe entity ids
+                     */
+                    myDropzone.on("successmultiple", function (files, response) {
 
-                    if (response
-                        && response.success
-                    ) {
-                        for (file in response.data) {
 
-                            var reference = document.createElement('input')
-                            reference.type = 'hidden';
-                            reference.name = _fieldName;
-                            reference.value = response.data[file].id;
+                        if (response && response.success) {
 
-                            files[file].previewElement.appendChild(reference);
+                            for (file in response.data) {
 
-                            files[file].previewElement.setAttribute('draggable',true);
+                                files[file].id = response.data[file].id;
+
+                                $this.appendHiddenEntityInput(files[file]);
+
+                            }
 
                         }
 
-                    }
+                    });
+                }
+                else {
+                    /**
+                     * hooks the sucess event to append a hidden input which holds the entity id
+                     */
+                    myDropzone.on("success", function (file, response) {
 
-                });
-                this.on("errormultiple", function (files, response) {
+                        if (response && response.success) {
 
-                    console.log("DropZone::errormultiple", files, response);
-                    // Gets triggered when there was an error sending the files.
-                    // Maybe show form again, and notify user of error
-                });
+                            for (tFile in response.data) {
+
+                                file.id = response.data[0].id;
+
+                                $this.appendHiddenEntityInput(file);
+                            }
+                        }
+                    });
+                }
 
 
-                this.on("addedfile", function(file) {
+                /**
+                 * add already stored files to the widget
+                 */
 
-                    // Create the remove button
-                    //var removeButton = Dropzone.createElement('<button class="dz-remove-button">Remove file</button>');
-                    //
-                    //
-                    //// Capture the Dropzone instance as closure.
-                    //var _this = this;
-                    //
-                    //// Listen to the click event
-                    //removeButton.addEventListener("click", function(e) {
-                    //    // Make sure the button click doesn't submit the form:
-                    //    e.preventDefault();
-                    //    e.stopPropagation();
-                    //
-                    //    // Remove the file preview.
-                    //    _this.removeFile(file);
-                    //    // If you want to the delete the file on the server as well,
-                    //    // you can do the AJAX request here.
-                    //});
-                    //
-                    //// Add the button to the file preview element.
-                    //file.previewElement.appendChild(removeButton);
-                });
+                //temporaty add this event to get the real formated dropzone-file objects
+                myDropzone.on("addedfile", $this.appendHiddenEntityInput);
+
+
+                for (var i = 0; i < _files.length; i++) {
+                    var mock = _files[i];
+                    mock.accepted = true;
+
+                    myDropzone.files.push(mock);
+                    myDropzone.emit('addedfile', mock);
+                    myDropzone.createThumbnailFromUrl(mock, mock.url);
+                    myDropzone.emit('complete', mock);
+                }
+
+                //removes the temporaty added this event
+                myDropzone.off("addedfile",$this.appendHiddenEntityInput);
+
             }
         }
     );
-
-    return myDropzone;
 }
 
-function MMMediaBundleFileDropzoneInitiateEvents(){
-    function handleDragStart(e) {
-        this.style.opacity = '0.4';  // this / e.target is the source node.
-    }
+function MMMediaBundleFileDropzoneInitiateEvents() {
 
-    function handleDragOver(e) {
-        if (e.preventDefault) {
-            e.preventDefault(); // Necessary. Allows us to drop.
-        }
-
-        e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-
-        return false;
-    }
-
-    function handleDragEnter(e) {
-        // this / e.target is the current hover target.
-        this.classList.add('over');
-    }
-
-    function handleDragLeave(e) {
-        this.classList.remove('over');  // this / e.target is previous target element.
-    }
-
-    var cols = document.querySelectorAll('#columns .column');
-    [].forEach.call(cols, function(col) {
-        col.addEventListener('dragstart', handleDragStart, false);
-        col.addEventListener('dragenter', handleDragEnter, false);
-        col.addEventListener('dragover', handleDragOver, false);
-        col.addEventListener('dragleave', handleDragLeave, false);
-    });
 }
 
 
 /**
  * Start loading the dom is rdy
  */
-MMMediaBundleDomReady(function(event) {
-    console.log('MMMediaBundleDomReady');
+MMMediaBundleDomReady(function (event) {
 
     var elements = document.getElementsByClassName('mmmb-dropzone');
 
-    console.log(elements);
+    for (var i = 0; i < elements.length; i++) {
 
-    for (var i = 0; i < elements.length; i++){
-
-        console.log(i);
         var dropzone = elements[i];
 
         var url = dropzone.getAttribute('data-url');
         var fieldName = dropzone.getAttribute('data-field-name');
         var id = dropzone.getAttribute('id');
 
+        //fetches preloaded Files
+        var files = dropzone.getAttribute('data-files');
+        files = JSON.parse(files);
 
         /*
          * @TODO: better bool check
          */
         var multiple = dropzone.getAttribute('data-multiple');
 
-        if( multiple=="false" || multiple=="" || multiple=="0")
+        if (multiple == "false" || multiple == "" || multiple == "0")
             multiple = false;
         else
             multiple = true;
 
-
-
-        console.log(id,url,multiple);
-
-        MMMediaBundleFileDropzone("#"+id,url,fieldName,multiple);
+        //loads the UploadWidget-Dropzone
+        new MMMediaBundleFileDropzone("#" + id, url, fieldName, multiple, files);
     }
 
     MMMediaBundleFileDropzoneInitiateEvents();
