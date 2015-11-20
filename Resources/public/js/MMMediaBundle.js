@@ -91,7 +91,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
             url: _url,
             // The configuration we've talked about above
             autoProcessQueue: true,
-            paramName: 'files',
+            paramName: (_multiple ? 'files' : 'files[]'),
             addRemoveLinks: true,
             previewsContainer: $id_dropzone_preview,
 
