@@ -64,7 +64,7 @@
         {% block fileuplaod %}
             <label>
                 Datei
-                <input id="files" type="file" name="files[]" {% if form.vars.multiple %}multiple{% endif %}>
+                <input id="files" type="file" name="files[]" multiple>
             </label>
         {% endblock %}
 
@@ -84,8 +84,7 @@
         {% endblock %}
 
         <div id="references">
-
+            {{ form_widget(form) }}
         </div>
-
     {% endspaceless %}
 {% endblock %}

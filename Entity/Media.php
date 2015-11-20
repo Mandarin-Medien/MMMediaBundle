@@ -278,4 +278,10 @@ class Media implements MediaInterface
         unset($metadata[$name]);
         $this->setMediaTypeMetadata($metadata);
     }
+
+
+    public function __toString()
+    {
+        return 'image'.$this->getId();
+    }
 }
