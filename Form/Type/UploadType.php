@@ -26,7 +26,7 @@ class UploadType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        //$view->vars['multiple'] = $options['multiple'];
+        $view->vars['multiple'] = $options['multiple'];
         // TODO: implement MediaType Configuration
     }
 

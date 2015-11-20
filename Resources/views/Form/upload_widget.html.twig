@@ -4,7 +4,7 @@
             <label id="dz_{{ id }}_label">
                 <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
                      data-url="{{ path('media_upload') }}"
-                     data-field-name="{{ full_name }}"
+                     data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
                 ></div>
             </label>
         {% endblock %}
