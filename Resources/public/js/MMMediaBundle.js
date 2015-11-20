@@ -170,7 +170,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
                 myDropzone.off("addedfile", $this.appendHiddenEntityInput);
 
                 /**
-                 * loads Dragular to enable drag and drop functionality    
+                 * loads Dragular to enable drag and drop functionality
+                 * @TODO: check if its possible to enable drag n drop with multiple instances of Dropzone
                  */
                 if (_multiple) {
 
