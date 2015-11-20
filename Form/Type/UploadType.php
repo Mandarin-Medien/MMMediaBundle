@@ -35,8 +35,11 @@ class UploadType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multiple'] = $options['multiple'];
-        $view->vars['value_media_json'] = $this->getJsonFormatedMedia(($view->vars['value'] ?: null));
+
+        $mediaEntity = $this->manager->getRepository('MMMediaBundle:Media')->find((int)$view->vars['value']);
+        $view->vars['value_media_json'] = $this->getJsonFormatedMedia($mediaEntity);
         // TODO: implement MediaType Configuration
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -54,6 +57,7 @@ class UploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
+
     }
 
 
@@ -72,8 +76,10 @@ class UploadType extends AbstractType
      * @param Media $media
      * @return string
      */
-    public function getJsonFormatedMedia(Media $media = null)
+    public function getJsonFormatedMedia($media = null)
     {
+
+        var_dump('trigger format');
 
         $data = array();
 
