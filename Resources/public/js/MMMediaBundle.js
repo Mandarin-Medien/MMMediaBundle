@@ -46,7 +46,7 @@ Dropzone.autoDiscover = false;
  */
 function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
 
-    $this = this;
+    var $this = this;
 
     /**
      * creates and DOM input which holds a Media-Entity ID
@@ -81,6 +81,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
         }
     }
 
+    var $id_dropzone_preview = _id + '_previews'
+
     /**
      * loads the Dropzone instance
      */
@@ -91,6 +93,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
             autoProcessQueue: true,
             paramName: 'files',
             addRemoveLinks: true,
+            previewsContainer: $id_dropzone_preview,
 
             uploadMultiple: _multiple,
             parallelUploads: ( (_multiple) ? 100 : 1 ),
@@ -149,10 +152,10 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
                  * add already stored files to the widget
                  */
 
-                //temporaty add this event to get the real formated dropzone-file objects
+                    //temporaty add this event to get the real formated dropzone-file objects
                 myDropzone.on("addedfile", $this.appendHiddenEntityInput);
 
-
+                //loops thought the presetted files and appends them to the dropzone_preview
                 for (var i = 0; i < _files.length; i++) {
                     var mock = _files[i];
                     mock.accepted = true;
@@ -164,7 +167,19 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files) {
                 }
 
                 //removes the temporaty added this event
-                myDropzone.off("addedfile",$this.appendHiddenEntityInput);
+                myDropzone.off("addedfile", $this.appendHiddenEntityInput);
+
+
+                if (_multiple) {
+
+                    var $dragula = dragula([document.querySelector( $id_dropzone_preview )],
+                        {
+                            direction: 'horizontal'
+                        });
+                    console.log(document.querySelector(_id), $dragula);
+
+                }
+
 
             }
         }
