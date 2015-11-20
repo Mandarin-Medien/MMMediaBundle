@@ -21,3 +21,9 @@ assetic:
                 - '@MMMediaBundle/Resources/public/css/MMMediaBundle.css'
 
 
+# Twig Configuration
+twig:
+    form:
+        resources:
+            - MMMediaBundle:Form:mmmedia_upload_collection_widget.html.twig
+            - MMMediaBundle:Form:mmmedia_upload_widget.html.twig
