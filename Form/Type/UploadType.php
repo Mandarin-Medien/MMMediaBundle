@@ -34,8 +34,8 @@ class UploadType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['multiple'] = $options['multiple'];
-        $view->vars['value_media_json'] = $this->getJsonFormatedMedias($view->vars['value']);
+        $view->vars['multiple'] = $options['multiple']
+        $view->vars['value_media_json'] = $this->getJsonFormatedMedia(($view->vars['value'] ?: null));
         // TODO: implement MediaType Configuration
     }
 
@@ -43,7 +43,8 @@ class UploadType extends AbstractType
     {
 
         $resolver->setDefaults(array(
-            'multiple' => true
+            'multiple' => false,
+            'class' => 'MandarinMedien\MMMediaBundle\Entity\Media'
         ));
 
         $resolver
@@ -54,7 +55,6 @@ class UploadType extends AbstractType
     {
         $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
     }
-
 
 
     public function getParent()
@@ -69,22 +69,24 @@ class UploadType extends AbstractType
     }
 
     /**
-     * @param Media[] $medias
+     * @param Media $media
      * @return string
      */
-    public function getJsonFormatedMedias($medias)
+    public function getJsonFormatedMedia(Media $media = null)
     {
-        $array = array();
 
-        foreach($medias as $media)
-            $array[] = array(
+        $data = array();
+
+        if($media) {
+            $data[] = array(
                 'id' => $media->getId(),
                 'name' => $media->getMediaTypeReference(),
                 'size' => false,
                 'type' => '',
-                'url' => "/media/".$media->getMediaTypeReference()
+                'url' => "/media/" . $media->getMediaTypeReference()
             );
+        }
 
-        return json_encode($array);
+        return json_encode($data);
     }
 }

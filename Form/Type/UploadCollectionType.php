@@ -3,7 +3,7 @@
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
-use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableTransformer;
+use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableCollectionTransformer;
 use MandarinMedien\MMMediaBundle\Form\Guess\MediaFormTypeGuesser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -30,6 +30,7 @@ class UploadCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multiple'] = $options['multiple'];
+        $view->vars['value_media_json'] = $this->getJsonFormatedMedias($view->vars['value']);
         // TODO: implement MediaType Configuration
     }
 
@@ -46,7 +47,7 @@ class UploadCollectionType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
+        $builder->addModelTransformer(new MediaToMediaSortableCollectionTransformer($this->manager));
     }
 
 

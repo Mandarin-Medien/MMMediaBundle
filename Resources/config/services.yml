@@ -7,7 +7,7 @@ services:
         class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
-            - {name: form.type, alias: mmedia_upload}
+            - {name: form.type, alias: mmmedia_upload}
 
     form.type.mmmedia_upload_collection:
             class: MandarinMedien\MMMediaBundle\Form\Type\UploadCollectionType

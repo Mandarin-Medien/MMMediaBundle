@@ -30,46 +30,37 @@ class MediaToMediaSortableTransformer implements DataTransformerInterface
         if(null === $value)
             return;
 
-        $sortables = $value->toArray();
-        array_walk($sortables, function(MediaSortable &$sortable)
-        {
-            $sortable = $sortable->getMedia();
-        });
+        $media = $value->getMedia();
 
-        return $sortables;
+        return $media;
 
     }
 
 
-    public function reverseTransform($collection)
+    public function reverseTransform($value)
     {
 
-        if(null === $collection)
+        if(null === $value)
             return;
 
-        array_walk($collection, function(&$item, $pos) {
-            // create an new MediaSortableEntity
-            $media = $this->manager->getRepository('MMMediaBundle:Media')
-                ->find((int) $item->getId());
 
-            if($media === null) {
-                throw new TransformationFailedException(sprintf(
-                    'Image %s: Assignement failed',
-                    $value
-                ));
-            }
+        $media = $this->manager->getRepository('MMMediaBundle:Media')
+            ->find((int) $value->getId());
 
-
-            $item = (new MediaSortable())
-                ->setMedia($media)
-                ->setPosition((int) $pos);
+        if($media === null) {
+            throw new TransformationFailedException(sprintf(
+                'Image %s: Assignement failed',
+                $value
+            ));
+        }
 
 
+        $mediaSortable = (new MediaSortable())
+            ->setMedia($media)
+            ->setPosition(0);
 
-        });
 
-
-        return $collection;
+        return $mediaSortable;
 
 
     }
