@@ -5,5 +5,18 @@ services:
 
     form.type.upload:
         class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - {name: form.type, alias: upload}
+
+    form.type.hidden_entity:
+        class: MandarinMedien\MMMediaBundle\Form\Type\HiddenEntityType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - {name: form.type, alias: entity_hidden}
+
+    form.type.hidden_entity_collection:
+            class: MandarinMedien\MMMediaBundle\Form\Type\HiddenEntityCollectionType
+            arguments: ["@doctrine.orm.entity_manager"]
+            tags:
+                - {name: form.type, alias: entity_collection_hidden}
