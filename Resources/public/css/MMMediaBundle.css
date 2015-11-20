@@ -6,6 +6,14 @@
   -moz-box-shadow: 3px 3px 8px -5px rgba(0, 0, 0, 0.67);
   box-shadow: 3px 3px 8px -5px rgba(0, 0, 0, 0.67);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  cursor: move;
 }
 .dropzone .dz-preview.dz-file-preview .dz-image,
 .dropzone .dz-preview .dz-image {
@@ -20,13 +28,4 @@
 }
 .dropzone .dz-preview .dz-remove:hover {
   text-decoration: underline;
-}
-.dropzone[draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
 }
