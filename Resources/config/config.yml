@@ -12,9 +12,11 @@ assetic:
         mmmedia_assets_js:
             inputs:
                 - '@MMMediaBundle/Resources/public/js/dropzone.4.2.0.min.js'
+                - '@MMMediaBundle/Resources/public/js/dragula.3.5.4.min.js'
                 - '@MMMediaBundle/Resources/public/js/MMMediaBundle.js'
         mmmedia_assets_css:
             inputs:
+                - '@MMMediaBundle/Resources/public/css/dragula.3.5.4.min.css'
                 - '@MMMediaBundle/Resources/public/css/dropzone.4.2.0.min.css'
                 - '@MMMediaBundle/Resources/public/css/MMMediaBundle.css'
 
