@@ -26,6 +26,43 @@ mm_media:
 ...
 ```
 
+### Use MMMediaBundle in your Entities
+You need to use the MediaSortable Entity of this bundle to have sortable Media.
+For a collection of media, use an unidirectional manyToMany-association and for single media an
+unidirectional oneToOne. To avoid garbage in your database, make sure to set the orphanRemoval flag.
+
+
+#### eg. yaml configuration for single media:
+```
+...
+    oneToOne:
+        titleImage:
+            targetEntity: MandarinMedien\MMMediaBundle\Entity\MediaSortable
+            cascade:
+              - persist
+              - remove
+...
+```
+
+
+#### eg. yaml configuration for media collection:
+```
+...
+    manyToMany:
+        medias:
+            targetEntity: MandarinMedien\MMMediaBundle\Entity\MediaSortable
+            orderBy: { 'position': 'ASC' }
+            joinColumn:
+                name: media_sortable_id
+                referencedColumnName: id
+            cascade:
+                - persist
+                - remove
+            orphanRemoval: true
+...
+```
+
+
 ### Add all needed Assets to your layout
 To make the MMMediaBundle-UploadWidget work properly you need to add the necessary CSS and the JS files.
 Your can just copy this part below or add @mmmedia_assets_css and @mmmedia_assets_js into your asset calls.
