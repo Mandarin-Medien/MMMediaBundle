@@ -10,6 +10,11 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
+                <th>Preview</th>
+                <td>{{ entity.preview|raw }}</td>
+            </tr>
+
+            <tr>
                 <th>Name</th>
                 <td>{{ entity.name }}</td>
             </tr>
@@ -43,7 +48,7 @@
             </tr>
             <tr>
                 <th>Mediatypemetadata</th>
-                <td>{{ entity.mediaTypeMetadata }}</td>
+                <td>{{ dump(entity.mediaTypeMetadata) }}</td>
             </tr>
         </tbody>
     </table>
