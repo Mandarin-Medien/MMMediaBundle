@@ -34,11 +34,12 @@ class UploadController extends Controller
     {
 
         //return new JsonResponse($request);
-
+        #var_dump($request);
         // process the filebag
-        $medias = array_merge(
+
+        $rawMedias = array_merge(
             $this->processUploadedFiles($request->files),
-            $this->processUrls(Array())
+            $this->processUrls($request)
         );
 
 
@@ -47,8 +48,8 @@ class UploadController extends Controller
 
         $returnData = array();
 
-        foreach($medias as $media) {
-            if(null != ($mt = $mtm->getMediaTypeMatch($media))) {
+        foreach ($rawMedias as $rawmedia) {
+            if (null != ($mt = $mtm->getMediaTypeMatch($rawmedia))) {
 
                 /** @var MediaInterface $ms */
                 $ms = $mt->getEntity();
@@ -59,7 +60,7 @@ class UploadController extends Controller
                 $returnData[] = array(
                     'id' => $ms->getId(),
                     'path' => $ms->getMediaTypeReference(),
-                    'mediatype' => (string) $ms->getMediaType()
+                    'mediatype' => (string)$ms->getMediaType()
                 );
             }
         }
@@ -87,19 +88,20 @@ class UploadController extends Controller
 
         $processed = array();
 
+        if ($filebag->get('files')) {
+            /**
+             * @var UploadedFile $file
+             */
+            foreach ($filebag->get('files') as $file) {
+                // get the unique filepath
+                $dest = $this->createUniquePath($file);
 
-        /**
-         * @var UploadedFile $file
-         */
-        foreach($filebag->get('files') as $file)
-        {
-            // get the unique filepath
-            $dest = $this->createUniquePath($file);
-
-            if($filesystem->write($dest['path'], file_get_contents($file->getPathname()))){
-                $processed[] = $dest['path'];
-            };
+                if ($filesystem->write($dest['path'], file_get_contents($file->getPathname()))) {
+                    $processed[] = $dest['path'];
+                };
+            }
         }
+
 
         return $processed;
     }
@@ -108,12 +110,22 @@ class UploadController extends Controller
     /**
      * process the given urls
      *
-     * @param array $urls
-     * @return array reference list of the urls
+     * @param Request $request
+     * @return array
      */
-    protected function processUrls(array $urls)
+    protected function processUrls(Request $request)
     {
-        return array();
+        $externalRawMediaUrls = array();
+
+        if ($request->get('urls')) {
+
+            foreach ($request->get('urls') as $url) {
+
+                $externalRawMediaUrls[] = $url;
+            }
+        }
+
+        return $externalRawMediaUrls;
     }
 
 
@@ -126,13 +138,13 @@ class UploadController extends Controller
     protected function createUniquePath(UploadedFile $file)
     {
         $unique = uniqid();
-        $dir = substr((string) $unique, 0, 2);
-        $name = $file->getClientOriginalName().'.'.uniqid().'.'.$file->getClientOriginalExtension();
+        $dir = substr((string)$unique, 0, 2);
+        $name = $file->getClientOriginalName() . '.' . uniqid() . '.' . $file->getClientOriginalExtension();
 
         return Array(
             'dir' => $dir,
             'filename' => $name,
-            'path' => $dir.'/'.$name
+            'path' => $dir . '/' . $name
         );
     }
 }
