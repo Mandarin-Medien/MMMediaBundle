@@ -36,8 +36,8 @@ class MediaTypeManager
      */
     public function registerMediaType($mediaType)
     {
-        if($this->check($mediaType)) {
-            $this->mediaTypes[] = $mediaType;
+        if ($this->check($mediaType)) {
+            $this->mediaTypes[(new \ReflectionClass($mediaType))->getConstant('NAME')] = $mediaType;
             return $this;
         } else {
             throw new \Exception('registered MediaType must implement \MandarinMedien\MMMediaBundle\Model\MediaTypeInterface');
@@ -63,11 +63,10 @@ class MediaTypeManager
      */
     public function getMediaTypeMatch($data)
     {
-        foreach($this->getMediaTypes() as $mediaTypeClass)
-        {
+        foreach ($this->getMediaTypes() as $mediaTypeClass) {
             $instance = forward_static_call(array($mediaTypeClass, 'check'), $data);
 
-            if($instance) return $instance;
+            if ($instance) return $instance;
         }
     }
 
@@ -83,5 +82,21 @@ class MediaTypeManager
         return (new \ReflectionClass($mediaType))
             ->implementsInterface('\MandarinMedien\MMMediaBundle\Model\MediaTypeInterface');
 
+    }
+
+    /**
+     * @param $name
+     * @return MediaTypeInterface|null
+     */
+    public function getInstanceByName($name)
+    {
+        $mts = $this->getMediaTypes();
+
+        if (isset($mts[$name])) {
+
+            return new $mts[$name];
+        }
+
+        return null;
     }
 }
