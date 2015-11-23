@@ -21,9 +21,10 @@ class MediaType extends AbstractType
             ->add('updatedAt')
             ->add('copyright')
             ->add('author')
-            ->add('mediaType')
+            #->add('mediaType')
             ->add('mediaTypeReference')
             ->add('mediaTypeMetadata')
+
         ;
     }
     

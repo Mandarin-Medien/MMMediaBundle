@@ -29,7 +29,7 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             length: 100
             nullable: true
         mediaType:
-            type: string
+            type: mmmediabundle_mediatype
             length: 100
         mediaTypeReference:
             type: string
