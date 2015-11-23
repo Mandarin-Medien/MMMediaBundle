@@ -42,6 +42,21 @@ interface MediaTypeInterface
      */
     public function getReference();
 
+    /**
+     * get the media name
+     *
+     * @return string
+     */
+    public function getMediaName();
+
+    /**
+     * get the media description
+     *
+     * @return string
+     */
+    public function getMediaDescription();
+
+
 
     /**
      * return the Media Entity
@@ -58,4 +73,10 @@ interface MediaTypeInterface
      */
     public function __toString();
 
+    /**
+     * @param MediaInterface $media
+     * @param array|null $options
+     * @return mixed
+     */
+    public function getPreview(MediaInterface $media, array $options = null);
 }

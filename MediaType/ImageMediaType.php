@@ -13,6 +13,12 @@ class ImageMediaType extends BaseMediaType
 {
     const NAME = 'mm.media.type.image';
 
+    /**
+     * @TODO: implement extra file object check
+     *
+     * @param $data
+     * @return ImageMediaType|null
+     */
     static function check($data)
     {
         $allowedExtensions = array(

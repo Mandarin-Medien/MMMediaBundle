@@ -152,7 +152,7 @@ interface MediaInterface
      * @param array $mediaTypeMetadata
      * @return Media
      */
-    public function setMediaTypeMetadata($mediaTypeMetadata);
+    public function setMediaTypeMetadata(array $mediaTypeMetadata);
 
     /**
      * returns a MediaType-MetaData-Entry of the media file

@@ -240,7 +240,7 @@ class Media implements MediaInterface
      * @param array $mediaTypeMetadata
      * @return Media
      */
-    public function setMediaTypeMetadata($mediaTypeMetadata)
+    public function setMediaTypeMetadata(array $mediaTypeMetadata)
     {
         $this->mediaTypeMetadata = $mediaTypeMetadata;
         return $this;
@@ -282,6 +282,11 @@ class Media implements MediaInterface
 
     public function __toString()
     {
-        return 'image'.$this->getId();
+        return 'image' . $this->getId();
+    }
+
+    public function getPreview($options = null)
+    {
+        return $this->getMediaType()->getPreview($this,$options);
     }
 }

@@ -10,6 +10,7 @@ namespace MandarinMedien\MMMediaBundle\MediaType;
 
 
 use MandarinMedien\MMMediaBundle\Entity\Media;
+use MandarinMedien\MMMediaBundle\Model\MediaInterface;
 use MandarinMedien\MMMediaBundle\Model\MediaTypeInterface;
 
 abstract class BaseMediaType implements MediaTypeInterface
@@ -21,7 +22,7 @@ abstract class BaseMediaType implements MediaTypeInterface
     protected $media;
 
 
-    public function __construct($data)
+    public function __construct($data = null)
     {
         $this->setRaw($data);
     }
@@ -46,7 +47,9 @@ abstract class BaseMediaType implements MediaTypeInterface
             $this->media = (new Media())
                 ->setMediaType($this)
                 ->setMediaTypeReference($this->getReference())
-                ->setMediaTypeMetadata($this->getMetaData());
+                ->setMediaTypeMetadata($this->getMetaData())
+                ->setName($this->getMediaName())
+                ->setDescription($this->getMediaDescription());
         }
 
         return $this->media;
@@ -70,7 +73,6 @@ abstract class BaseMediaType implements MediaTypeInterface
         return static::NAME;
     }
 
-
     /**
      * parse the raw data and returns an instance on match
      *
@@ -81,4 +83,28 @@ abstract class BaseMediaType implements MediaTypeInterface
     {
         return null;
     }
+
+    /**
+     * @param MediaInterface $media
+     * @param array|null $options
+     * @return string
+     */
+    public function getPreview(MediaInterface $media, array $options = null)
+    {
+        return '<b>'.$media->getId().'</b>';
+    }
+
+    /**
+     * get the media name
+     *
+     * @return string
+     */
+    public function getMediaName() {return '';}
+
+    /**
+     * get the media description
+     *
+     * @return string
+     */
+    public function getMediaDescription() {return '';}
 }
