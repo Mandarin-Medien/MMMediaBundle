@@ -79,7 +79,7 @@ class UploadType extends AbstractType
     public function getJsonFormatedMedia($media = null)
     {
 
-        var_dump('trigger format');
+
 
         $data = array();
 
