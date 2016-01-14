@@ -15,7 +15,11 @@ class MMMediaBundle extends Bundle
 
     public function __construct()
     {
-        Type::addType('mmmediabundle_mediatype', '\MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType');
+
+        if (!Type::hasType("mmmediabundle_mediatype")) {
+            Type::addType("mmmediabundle_mediatype", '\MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType');
+            $this->registerDoctrineTypeMapping("MmmediabundleMediaType", "mmmediabundle_mediatype");
+        }
     }
 
     public function boot()
@@ -27,6 +31,7 @@ class MMMediaBundle extends Bundle
         /* @var $customType \MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType */
 
         $customType->setMediaTypeManager($mtm);
+
     }
 
     /**
