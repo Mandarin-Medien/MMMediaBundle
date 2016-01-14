@@ -21,8 +21,6 @@ class FileMediaType extends BaseMediaType
             '*'
         );
 
-
-        return null;
         return new self($data);
     }
 
