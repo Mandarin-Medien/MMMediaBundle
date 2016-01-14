@@ -16,6 +16,15 @@
 ...
 ```
 
+### Append to app/config/config.yml
+
+```
+...
+imports:
+    - { resource: '@MMMediaBundle/Resources/config/config.yml' }
+...
+```
+
 ### Append to App/config/routing.yml
 
 ```
@@ -61,7 +70,6 @@ unidirectional oneToOne. To avoid garbage in your database, make sure to set the
             orphanRemoval: true
 ...
 ```
-
 
 ### Add all needed Assets to your layout
 To make the MMMediaBundle-UploadWidget work properly you need to add the necessary CSS and the JS files.
