@@ -18,7 +18,7 @@ class MMMediaBundle extends Bundle
 
         if (!Type::hasType("mmmediabundle_mediatype")) {
             Type::addType("mmmediabundle_mediatype", '\MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType');
-            $this->registerDoctrineTypeMapping("MmmediabundleMediaType", "mmmediabundle_mediatype");
+            #$this->registerDoctrineTypeMapping("MmmediabundleMediaType", "mmmediabundle_mediatype");
         }
     }
 
