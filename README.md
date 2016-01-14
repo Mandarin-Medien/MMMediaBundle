@@ -35,6 +35,15 @@ mm_media:
 ...
 ```
 
+
+### Create web/media folder to store images
+
+```
+...
+shell: mkdir PROJECT_ROOT/web/media
+...
+```
+
 ### Use MMMediaBundle in your Entities
 You need to use the MediaSortable Entity of this bundle to have sortable Media.
 For a collection of media, use an unidirectional manyToMany-association and for single media an
