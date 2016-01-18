@@ -8,6 +8,7 @@
 
 namespace MandarinMedien\MMMediaBundle\MediaType;
 
+use MandarinMedien\MMMediaBundle\Model\MediaInterface;
 
 class ImageMediaType extends BaseMediaType
 {
@@ -29,10 +30,29 @@ class ImageMediaType extends BaseMediaType
             'tiff'
         );
 
-        if(in_array(strtolower(pathinfo($data, PATHINFO_EXTENSION)), $allowedExtensions)) {
+        if (in_array(strtolower(pathinfo($data, PATHINFO_EXTENSION)), $allowedExtensions)) {
             return new self($data);
         } else {
             return null;
         }
+    }
+
+    /**
+     * @param MediaInterface $media
+     * @param array|null $options
+     * @return string
+     */
+    public function getPreview(MediaInterface $media, array $options = null)
+    {
+        $self_options = Array('html' => Array('class' => array(self::NAME)));
+
+        if(is_array($options))
+            $options = array_merge_recursive($options,$self_options);
+        else
+            $options = $self_options;
+
+        $html = '<img src="/media/' . $media->getMediaTypeReference() . '" class="' . implode(' ', $options['html']['class']) . '" />';
+
+        return $html;
     }
 }

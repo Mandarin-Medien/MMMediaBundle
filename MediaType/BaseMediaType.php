@@ -91,7 +91,21 @@ abstract class BaseMediaType implements MediaTypeInterface
      */
     public function getPreview(MediaInterface $media, array $options = null)
     {
-        return '<b>'.$media->getId().'</b>';
+        $self_options = Array('html' => Array('class' => array(self::NAME)));
+
+        if(is_array($options))
+            $options = array_merge_recursive($options,$self_options);
+        else
+            $options = $self_options;
+
+        $name = $this->getMediaName();
+
+        if(!$name)
+            $name = basename($media->getMediaTypeReference());
+
+        $html = '<a href="/media/' . $media->getMediaTypeReference() . '" target="_blank" class="' . implode(' ', $options['html']['class']) . '" >'.$name."</a>";
+
+        return $html;
     }
 
     /**
