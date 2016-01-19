@@ -47,6 +47,7 @@ Dropzone.autoDiscover = false;
 function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_options) {
 
     var $this = this;
+    $this.id = _id;
 
     /**
      * creates and DOM input which holds a Media-Entity ID
@@ -80,6 +81,32 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
                 _file.previewElement.appendChild($reference);
         }
     };
+
+    /**
+     * fires the afterInit event after the bundle finishs the custom init call
+     */
+    this.fireAfterInitEvent = function(_DropzoneDOM)
+    {
+
+        var $event;
+        var $element = document.getElementById(this.id.replace('#',''));
+
+        if (document.createEvent) {
+            var $event = document.createEvent("HTMLEvents");
+
+            $event.initEvent("MMMediaBundleFileDropzone.afterInit", true, true);
+        } else {
+            var $event = document.createEventObject();
+            $event.eventType = "MMMediaBundleFileDropzone.afterInit";
+        }
+
+        if (document.createEvent) {
+            $element.dispatchEvent($event);
+        } else {
+            $element.fireEvent("on" + $event.eventType, $event);
+        }
+    };
+
 
     /**
      * function which get called by Dropzone after init
@@ -166,6 +193,10 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
 
                 });
         }
+
+
+        $this.fireAfterInitEvent();
+
     };
 
     /**
