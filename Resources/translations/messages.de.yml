@@ -1,0 +1,11 @@
+dictDefaultMessage: "Hier klicken oder Dateien einfach hier ablegen - drag'n'drop"
+dictFallbackMessage: "Dein Browser unterstützt kein drag'n'drop für das Hochladen von Daten."
+dictFallbackText: "Bitte verwender das untere Fallback-Formular um Bilder hochzuladen."
+dictFileTooBig: "Die Datei ist zu groß ({{filesize}}MiB). Max Dateigröße: {{maxFilesize}}MiB."
+dictInvalidFileType: "Es ist nicht möglich eine Datei von diesem Typ hochzuladen."
+dictResponseError: "Server antwortet mit folgendem Statuscode {{statusCode}}."
+dictCancelUpload: "hochladen abbrechen"
+dictCancelUploadConfirmation: "Bist du dir sicher, dass du das Hochladen unterbrechen möchtest?"
+dictRemoveFile: "entfernen"
+dictRemoveFileConfirmation: null
+dictMaxFilesExceeded: "Maximale Dateianzahl erreicht."

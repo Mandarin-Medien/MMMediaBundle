@@ -5,6 +5,19 @@
              data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
              data-multiple="{% if multiple %}true{% else %}false{% endif %}"
              data-files="{{ value_media_json|e|raw }}"
+
+             data-dictDefaultMessage="{{ 'dictDefaultMessage'|trans }}"
+             data-dictFallbackMessage="{{ 'dictFallbackMessage'|trans }}"
+             data-dictFallbackText="{{ 'dictFallbackText'|trans }}"
+             data-dictInvalidFileType="{{ 'dictInvalidFileType'|trans }}"
+             data-dictFileTooBig="{{ 'dictFileTooBig'|trans }}"
+             data-dictResponseError="{{ 'dictResponseError'|trans }}"
+             data-dictCancelUpload="{{ 'dictCancelUpload'|trans }}"
+             data-dictCancelUploadConfirmation="{{ 'dictCancelUploadConfirmation'|trans }}"
+             data-dictRemoveFile="{{ 'dictRemoveFile'|trans }}"
+             data-dictRemoveFileConfirmation="{{ 'dictRemoveFileConfirmation'|trans }}"
+             data-dictMaxFilesExceeded="{{ 'dictMaxFilesExceeded'|trans }}"
+
         ></div>
 
         <div class="dropzone dropzone-previews" id="dz_{{ id }}_FormUploader_previews"></div>
