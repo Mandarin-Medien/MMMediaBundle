@@ -7,5 +7,5 @@ dictResponseError: "Server antwortet mit folgendem Statuscode {{statusCode}}."
 dictCancelUpload: "hochladen abbrechen"
 dictCancelUploadConfirmation: "Bist du dir sicher, dass du das Hochladen unterbrechen möchtest?"
 dictRemoveFile: "entfernen"
-dictRemoveFileConfirmation: null
+dictRemoveFileConfirmation: "Wirklich entfernen?"
 dictMaxFilesExceeded: "Maximale Dateianzahl erreicht."
