@@ -27,12 +27,11 @@ class MediaToMediaSortableCollectionTransformer implements DataTransformerInterf
 
     public function transform($value)
     {
-        if(null === $value)
+        if (null === $value)
             return;
 
         $sortables = $value->toArray();
-        array_walk($sortables, function(MediaSortable &$sortable)
-        {
+        array_walk($sortables, function (MediaSortable &$sortable) {
             $sortable = $sortable->getMedia();
         });
 
@@ -40,38 +39,28 @@ class MediaToMediaSortableCollectionTransformer implements DataTransformerInterf
 
     }
 
-
     public function reverseTransform($collection)
     {
-
-        if(null === $collection)
+        if (null === $collection)
             return;
 
-        array_walk($collection, function(&$item, $pos) {
+        array_walk($collection, function (&$item, $pos) {
             // create an new MediaSortableEntity
             $media = $this->manager->getRepository('MMMediaBundle:Media')
-                ->find((int) $item->getId());
+                ->find((int)$item->getId());
 
-            if($media === null) {
+            if ($media === null) {
                 throw new TransformationFailedException(sprintf(
-                    'Image %s: Assignement failed',
-                    $value
+                    'Image #%s: Assignement failed',
+                    $item->getId()
                 ));
             }
 
-
             $item = (new MediaSortable())
                 ->setMedia($media)
-                ->setPosition((int) $pos);
-
-
-
+                ->setPosition((int)$pos);
         });
 
-
         return $collection;
-
-
     }
-
 }
