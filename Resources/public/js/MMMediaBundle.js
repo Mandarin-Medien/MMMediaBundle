@@ -231,9 +231,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
         for (var key in _options)
             $options[key] = _options[key];
 
-
-    console.log($options);
-
+    
     /**
      * loads the Dropzone instance
      */
