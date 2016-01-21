@@ -231,6 +231,9 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
         for (var key in _options)
             $options[key] = _options[key];
 
+
+    console.log($options);
+
     /**
      * loads the Dropzone instance
      */
@@ -261,6 +264,10 @@ MMMediaBundleDomReady(function (event) {
         var files = dropzone.getAttribute('data-files');
         files = JSON.parse(files);
 
+        // get the allowed filetypes
+        var fileTypes = dropzone.getAttribute('data-accepted-files');
+        fileTypes = fileTypes ? fileTypes : false;
+
         /*
          * @TODO: better bool check
          */
@@ -272,6 +279,9 @@ MMMediaBundleDomReady(function (event) {
             multiple = true;
 
         var _options = {
+
+            acceptedFiles: fileTypes,
+
             dictDefaultMessage: dropzone.getAttribute('data-dictDefaultMessage'), // The message that gets displayed before any files are dropped. This is normally replaced by an image but defaults to "Drop files here to upload"'
             dictFallbackMessage: dropzone.getAttribute('data-dictFallbackMessage'), // If the browser is not supported, the default message will be replaced with this text. Defaults to "Your browser does not support drag'n'drop file uploads."'
             dictFallbackText: dropzone.getAttribute('data-dictFallbackText'), // This will be added before the file input files. If you provide a fallback element yourself, or if this option is null this will be ignored. Defaults to "Please use the fallback form below to upload your files like in the olden days."'

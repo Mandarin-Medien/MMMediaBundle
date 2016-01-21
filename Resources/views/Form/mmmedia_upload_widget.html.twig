@@ -5,6 +5,7 @@
              data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
              data-multiple="{% if multiple %}true{% else %}false{% endif %}"
              data-files="{{ value_media_json|e|raw }}"
+             data-accepted-files="{{ form.vars.allowed_filetypes|join(',') }}"
 
              data-dictDefaultMessage="{{ 'dictDefaultMessage'|trans }}"
              data-dictFallbackMessage="{{ 'dictFallbackMessage'|trans }}"

@@ -30,6 +30,7 @@ class UploadCollectionType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multiple'] = $options['multiple'];
+        $view->vars['allowed_filetypes'] = $options['allowed_filetypes'];
         $view->vars['value_media_json'] = $this->getJsonFormatedMedias($view->vars['value']);
         // TODO: implement MediaType Configuration
     }
@@ -38,11 +39,13 @@ class UploadCollectionType extends AbstractType
     {
 
         $resolver->setDefaults(array(
-            'multiple' => true
+            'multiple' => true,
+            'allowed_filetypes' => null
         ));
 
         $resolver
-            ->setAllowedTypes('multiple', 'boolean');
+            ->setAllowedTypes('multiple', 'boolean')
+            ->setAllowedTypes('allowed_filetypes', array('null', 'array'));
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
