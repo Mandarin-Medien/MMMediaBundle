@@ -97,3 +97,21 @@ Your can just copy this part below or add @mmmedia_assets_css and @mmmedia_asset
     {% endjavascripts %}
 ...
 ```
+
+### FormType Options
+
+```
+...
+
+    $builder          
+        ->add('medias', 'mmmedia_upload_collection', array(
+            
+            // optional: configure allowed filetypes by file-extensions 
+            'allowed_filetypes' => array( 
+                '.jpg', '.png', '.gif'
+            )
+            
+        ));
+
+...
+```
