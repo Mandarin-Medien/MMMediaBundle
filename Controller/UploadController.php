@@ -137,8 +137,8 @@ class UploadController extends Controller
      */
     protected function createUniquePath(UploadedFile $file)
     {
-        $unique = uniqid();
-        $dir = substr((string)$unique, 0, 2);
+        $dir = "mmmb/".strtolower(substr((string)$file->getClientOriginalName(), 0, 2));
+
         $name = $file->getClientOriginalName() . '.' . uniqid() . '.' . $file->getClientOriginalExtension();
 
         return Array(
