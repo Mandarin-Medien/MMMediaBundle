@@ -59,7 +59,7 @@ class UploadController extends Controller
 
                 $returnData[] = array(
                     'id' => $ms->getId(),
-                    'path' => $ms->getMediaTypeReference(),
+                    'path' => $rawmedia,
                     'mediatype' => (string)$ms->getMediaType()
                 );
             }
@@ -120,7 +120,6 @@ class UploadController extends Controller
         if ($request->get('urls')) {
 
             foreach ($request->get('urls') as $url) {
-
                 $externalRawMediaUrls[] = $url;
             }
         }
@@ -137,9 +136,11 @@ class UploadController extends Controller
      */
     protected function createUniquePath(UploadedFile $file)
     {
-        $dir = "mmmb/".strtolower(substr((string)$file->getClientOriginalName(), 0, 2));
+        $dir = "mmmb/" . substr(strtolower((string)$file->getClientOriginalName()), 0, 2);
 
-        $name = $file->getClientOriginalName() . '.' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $filename = str_replace(array(' ',$file->getClientOriginalExtension()), '-', $file->getClientOriginalName());
+
+        $name = strtolower($filename . uniqid() . '.' . $file->getClientOriginalExtension());
 
         return Array(
             'dir' => $dir,
