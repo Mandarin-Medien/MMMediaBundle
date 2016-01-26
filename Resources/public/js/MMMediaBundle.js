@@ -44,7 +44,7 @@ Dropzone.autoDiscover = false;
  *
  * @constructor
  */
-function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_options) {
+function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _options) {
 
     var $this = this;
     $this.id = _id;
@@ -85,11 +85,10 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
     /**
      * fires the afterInit event after the bundle finishs the custom init call
      */
-    this.fireAfterInitEvent = function(_DropzoneDOM)
-    {
+    this.fireAfterInitEvent = function (_DropzoneDOM) {
 
         var $event;
-        var $element = document.getElementById(this.id.replace('#',''));
+        var $element = document.getElementById(this.id.replace('#', ''));
 
         if (document.createEvent) {
             var $event = document.createEvent("HTMLEvents");
@@ -195,9 +194,39 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
         }
 
 
+
+        myDropzone.on("success", function (file, responseText) {
+            myDropzone.responseText = responseText;
+        });
+
+        myDropzone.on("complete", function (file) {
+
+            var tFile = file;
+            var obj = null;
+
+            /**
+             * @Todo temporary fix for DropZone ...need to be removed if the file variable is fixed
+             */
+            setTimeout(function(){
+
+                for (var i in myDropzone.responseText.data) {
+
+                    if (myDropzone.responseText.data[i].id == tFile.id) {
+                        obj = myDropzone.responseText.data[i];
+                        break;
+                    }
+                }
+                // Handle the responseText here. For example, add the text to the preview element:
+                if (obj)
+                    tFile.previewTemplate.querySelector('.dz-filename span').innerHTML = obj.path;
+            },100);
+
+        });
+
         $this.fireAfterInitEvent();
 
     };
+
 
     /**
      * dom id of preview container
@@ -231,7 +260,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files,_opt
         for (var key in _options)
             $options[key] = _options[key];
 
-    
+
     /**
      * loads the Dropzone instance
      */
