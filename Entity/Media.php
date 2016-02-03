@@ -3,11 +3,9 @@
  * Created by PhpStorm.
  * User: tonigurski
  * Date: 11.11.15
- * Time: 14:10
+ * Time: 14:10.
  */
-
 namespace MandarinMedien\MMMediaBundle\Entity;
-
 
 use MandarinMedien\MMMediaBundle\Form\MediaType;
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
@@ -94,11 +92,13 @@ class Media implements MediaInterface
 
     /**
      * @param string $name
+     *
      * @return Media
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -112,11 +112,13 @@ class Media implements MediaInterface
 
     /**
      * @param string $description
+     *
      * @return Media
      */
     public function setDescription($description)
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -130,11 +132,13 @@ class Media implements MediaInterface
 
     /**
      * @param string $copyright
+     *
      * @return Media
      */
     public function setCopyright($copyright)
     {
         $this->copyright = $copyright;
+
         return $this;
     }
 
@@ -148,11 +152,13 @@ class Media implements MediaInterface
 
     /**
      * @param string $author
+     *
      * @return Media
      */
     public function setAuthor($author)
     {
         $this->author = $author;
+
         return $this;
     }
 
@@ -166,11 +172,13 @@ class Media implements MediaInterface
 
     /**
      * @param datetime $createdAt
+     *
      * @return Media
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -184,11 +192,13 @@ class Media implements MediaInterface
 
     /**
      * @param datetime $updatedAt
+     *
      * @return Media
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -202,11 +212,13 @@ class Media implements MediaInterface
 
     /**
      * @param MediaTypeInterface $mediaType
+     *
      * @return Media
      */
     public function setMediaType(MediaTypeInterface $mediaType)
     {
         $this->mediaType = $mediaType;
+
         return $this;
     }
 
@@ -220,11 +232,13 @@ class Media implements MediaInterface
 
     /**
      * @param string $mediaTypeReference
+     *
      * @return Media
      */
     public function setMediaTypeReference($mediaTypeReference)
     {
         $this->mediaTypeReference = $mediaTypeReference;
+
         return $this;
     }
 
@@ -238,17 +252,20 @@ class Media implements MediaInterface
 
     /**
      * @param array $mediaTypeMetadata
+     *
      * @return Media
      */
     public function setMediaTypeMetadata(array $mediaTypeMetadata)
     {
         $this->mediaTypeMetadata = $mediaTypeMetadata;
+
         return $this;
     }
 
     /**
      * @param string $name
-     * @param null $default
+     * @param null   $default
+     *
      * @return mixed
      */
     public function getMediaTypeMetadataValue($name, $default = null)
@@ -260,7 +277,7 @@ class Media implements MediaInterface
 
     /**
      * @param string $name
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function setMediaTypeMetadataValue($name, $value)
     {
@@ -279,14 +296,13 @@ class Media implements MediaInterface
         $this->setMediaTypeMetadata($metadata);
     }
 
-
     public function __toString()
     {
-        return 'image' . $this->getId();
+        return 'image'.$this->getId();
     }
 
     public function getPreview($options = null)
     {
-        return $this->getMediaType()->getPreview($this,$options);
+        return $this->getMediaType()->getPreview($this, $options);
     }
 }

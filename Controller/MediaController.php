@@ -4,20 +4,16 @@ namespace MandarinMedien\MMMediaBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Form\MediaType;
 
 /**
  * Media controller.
- *
  */
 class MediaController extends Controller
 {
-
     /**
      * Lists all Media entities.
-     *
      */
     public function indexAction()
     {
@@ -31,7 +27,6 @@ class MediaController extends Controller
     }
     /**
      * Creates a new Media entity.
-     *
      */
     public function createAction(Request $request)
     {
@@ -49,7 +44,7 @@ class MediaController extends Controller
 
         return $this->render('MMMediaBundle:Media:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
@@ -74,22 +69,20 @@ class MediaController extends Controller
 
     /**
      * Displays a form to create a new Media entity.
-     *
      */
     public function newAction()
     {
         $entity = new Media();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('MMMediaBundle:Media:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
      * Finds and displays a Media entity.
-     *
      */
     public function showAction($id)
     {
@@ -104,14 +97,13 @@ class MediaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('MMMediaBundle:Media:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
      * Displays a form to edit an existing Media entity.
-     *
      */
     public function editAction($id)
     {
@@ -127,19 +119,19 @@ class MediaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('MMMediaBundle:Media:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a Media entity.
-    *
-    * @param Media $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Media entity.
+     *
+     * @param Media $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Media $entity)
     {
         $form = $this->createForm(new MediaType(), $entity, array(
@@ -153,7 +145,6 @@ class MediaController extends Controller
     }
     /**
      * Edits an existing Media entity.
-     *
      */
     public function updateAction(Request $request, $id)
     {
@@ -176,14 +167,13 @@ class MediaController extends Controller
         }
 
         return $this->render('MMMediaBundle:Media:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
      * Deletes a Media entity.
-     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -222,10 +212,8 @@ class MediaController extends Controller
         ;
     }
 
-
     public function uploadAction(Request $request)
     {
         var_dump($request);
     }
-
 }

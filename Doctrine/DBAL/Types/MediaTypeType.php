@@ -8,7 +8,6 @@ use MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager;
 
 class MediaTypeType extends StringType
 {
-
     const NAME = 'mmmediabundle_mediatype'; // modify to match your type name
 
     private $mediaTypeManager;
@@ -23,10 +22,8 @@ class MediaTypeType extends StringType
         return $mt ? $mt : null;
     }
 
-
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-
         if ((new \ReflectionClass($value))->implementsInterface('\MandarinMedien\MMMediaBundle\Model\MediaTypeInterface')) {
             return $value->getName();
         }
@@ -49,14 +46,13 @@ class MediaTypeType extends StringType
 
     /**
      * @param mixed $mediaTypeManager
+     *
      * @return MediaTypeType
      */
     public function setMediaTypeManager($mediaTypeManager)
     {
         $this->mediaTypeManager = $mediaTypeManager;
+
         return $this;
     }
-
-
 }
-

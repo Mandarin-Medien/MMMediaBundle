@@ -3,11 +3,9 @@
  * Created by PhpStorm.
  * User: christof
  * Date: 20.11.15
- * Time: 12:37
+ * Time: 12:37.
  */
-
 namespace MandarinMedien\MMMediaBundle\Form\Type;
-
 
 use Doctrine\Common\Persistence\ObjectManager;
 use MandarinMedien\MMMediaBundle\Entity\Media;
@@ -18,10 +16,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
-
 class UploadType extends AbstractType
 {
-
     protected $manager;
 
     public function __construct(ObjectManager $manager)
@@ -37,19 +33,17 @@ class UploadType extends AbstractType
         $view->vars['multiple'] = $options['multiple'];
         $view->vars['allowed_filetypes'] = $options['allowed_filetypes'];
 
-        $mediaEntity = $this->manager->getRepository('MMMediaBundle:Media')->find((int)$view->vars['value']);
+        $mediaEntity = $this->manager->getRepository('MMMediaBundle:Media')->find((int) $view->vars['value']);
         $view->vars['value_media_json'] = $this->getJsonFormatedMedia($mediaEntity);
         // TODO: implement MediaType Configuration
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $resolver->setDefaults(array(
             'multiple' => false,
             'class' => 'MandarinMedien\MMMediaBundle\Entity\Media',
-            'allowed_filetypes' => null
+            'allowed_filetypes' => null,
         ));
 
         $resolver
@@ -60,15 +54,12 @@ class UploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
-
     }
-
 
     public function getParent()
     {
         return 'entity_hidden';
     }
-
 
     public function getName()
     {
@@ -77,22 +68,20 @@ class UploadType extends AbstractType
 
     /**
      * @param Media $media
+     *
      * @return string
      */
     public function getJsonFormatedMedia($media = null)
     {
-
-
-
         $data = array();
 
-        if($media) {
+        if ($media) {
             $data[] = array(
                 'id' => $media->getId(),
                 'name' => $media->getMediaTypeReference(),
                 'size' => false,
                 'type' => '',
-                'url' => "/media/" . $media->getMediaTypeReference()
+                'url' => '/media/'.$media->getMediaTypeReference(),
             );
         }
 

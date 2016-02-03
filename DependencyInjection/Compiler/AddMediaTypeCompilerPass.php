@@ -11,10 +11,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 class AddMediaTypeCompilerPass implements CompilerPassInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {
     }
-
 }

@@ -3,11 +3,9 @@
  * Created by PhpStorm.
  * User: christof
  * Date: 11.11.15
- * Time: 14:22
+ * Time: 14:22.
  */
-
 namespace MandarinMedien\MMMediaBundle\MediaType;
-
 
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
 
@@ -17,27 +15,27 @@ class YoutubeMediaType extends BaseMediaType
 
     private $loadedMetaData;
 
-    static function check($data)
+    public static function check($data)
     {
         dump($data);
 
-        if(!($id = self::checkYoutubeLink($data)))
+        if (!($id = self::checkYoutubeLink($data))) {
             return;
+        }
 
         return new self($id);
     }
 
     public function getMetaData()
     {
-        if($this->loadedMetaData)
-        {
-           return $this->loadedMetaData;
+        if ($this->loadedMetaData) {
+            return $this->loadedMetaData;
         }
         $url = sprintf('http://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=%s&format=json', $this->getReference());
         $data = file_get_contents($url);
-        $metadata = json_decode($data,true);
+        $metadata = json_decode($data, true);
 
-        return $metadata ;
+        return $metadata;
     }
 
     private static function checkYoutubeLink($link)
@@ -54,17 +52,19 @@ class YoutubeMediaType extends BaseMediaType
 
     /**
      * @param MediaInterface $media
-     * @param array|null $options
+     * @param array|null     $options
+     *
      * @return string
      */
     public function getPreview(MediaInterface $media, array $options = null)
     {
-        dump($media->getMediaTypeMetadata() );
+        dump($media->getMediaTypeMetadata());
+
         return $media->getMediaTypeMetadata()['html'];
     }
 
     /**
-     * get the media name
+     * get the media name.
      *
      * @return string
      */
@@ -72,5 +72,4 @@ class YoutubeMediaType extends BaseMediaType
     {
         $this->getMetaData()['title'];
     }
-
 }

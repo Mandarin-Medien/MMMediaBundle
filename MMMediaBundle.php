@@ -2,7 +2,6 @@
 
 namespace MandarinMedien\MMMediaBundle;
 
-use Doctrine\DBAL\Types\StringType;
 use Doctrine\DBAL\Types\Type;
 use MandarinMedien\MMMediaBundle\DependencyInjection\Compiler\AddMediaTypeCompilerPass;
 use MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager;
@@ -11,13 +10,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class MMMediaBundle extends Bundle
 {
-
-
     public function __construct()
     {
-
-        if (!Type::hasType("mmmediabundle_mediatype")) {
-            Type::addType("mmmediabundle_mediatype", '\MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType');
+        if (!Type::hasType('mmmediabundle_mediatype')) {
+            Type::addType('mmmediabundle_mediatype', '\MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType');
             #$this->registerDoctrineTypeMapping("MmmediabundleMediaType", "mmmediabundle_mediatype");
         }
     }
@@ -31,7 +27,6 @@ class MMMediaBundle extends Bundle
         /* @var $customType \MandarinMedien\MMMediaBundle\Doctrine\DBAL\Types\MediaTypeType */
 
         $customType->setMediaTypeManager($mtm);
-
     }
 
     /**
@@ -40,6 +35,5 @@ class MMMediaBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new AddMediaTypeCompilerPass());
-
     }
 }

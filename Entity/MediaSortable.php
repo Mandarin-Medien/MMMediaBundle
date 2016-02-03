@@ -3,12 +3,12 @@
 namespace MandarinMedien\MMMediaBundle\Entity;
 
 /**
- * MediaSortable
+ * MediaSortable.
  */
 class MediaSortable
 {
     /**
-     * @var integer
+     * @var int
      */
     private $id;
 
@@ -18,15 +18,14 @@ class MediaSortable
     private $media;
 
     /**
-     * @var integer
+     * @var int
      */
     private $position;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -34,7 +33,7 @@ class MediaSortable
     }
 
     /**
-     * Set media
+     * Set media.
      *
      * @param Media $media
      *
@@ -48,7 +47,7 @@ class MediaSortable
     }
 
     /**
-     * Get media
+     * Get media.
      *
      * @return Media
      */
@@ -58,9 +57,9 @@ class MediaSortable
     }
 
     /**
-     * Set position
+     * Set position.
      *
-     * @param integer $position
+     * @param int $position
      *
      * @return MediaSortable
      */
@@ -72,38 +71,37 @@ class MediaSortable
     }
 
     /**
-     * Get position
+     * Get position.
      *
-     * @return integer
+     * @return int
      */
     public function getPosition()
     {
         return $this->position;
     }
 
-
     /**
-     * getter passtrough to $this->media
+     * getter passtrough to $this->media.
      *
      * @return mixed
      */
     public function __get($name)
     {
-        return call_user_func(array($this->getMedia(), 'get' . ucfirst($name)));
+        return call_user_func(array($this->getMedia(), 'get'.ucfirst($name)));
     }
 
     /**
-     * setter passtrough to $this->media
+     * setter passtrough to $this->media.
      *
      * * @return mixed
      */
     public function __set($name, $value)
     {
-        return call_user_func(array($this->getMedia(), 'set' . ucfirst($name)), $value);
+        return call_user_func(array($this->getMedia(), 'set'.ucfirst($name)), $value);
     }
 
     /**
-     * function passtrough to $this->media
+     * function passtrough to $this->media.
      *
      * @return mixed
      */
@@ -112,10 +110,8 @@ class MediaSortable
         return call_user_func(array($this->getMedia(), $func), $args);
     }
 
-
     public function __toString()
     {
         return 'image'.$this->getId();
     }
 }
-

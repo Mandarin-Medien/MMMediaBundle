@@ -3,31 +3,27 @@
  * Created by PhpStorm.
  * User: christof
  * Date: 13.11.15
- * Time: 12:09
+ * Time: 12:09.
  */
-
 namespace MandarinMedien\MMMediaBundle\Controller;
 
-
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
-
 use Gaufrette\Filesystem;
 use Gaufrette\Adapter\Local as LocalAdapter;
 
 class UploadController extends Controller
 {
-
     /**
      * retrieves and handles the ajax upload action
-     * to store uploaded files on file system
+     * to store uploaded files on file system.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function uploadAction(Request $request)
@@ -41,7 +37,6 @@ class UploadController extends Controller
             $this->processUploadedFiles($request->files),
             $this->processUrls($request)
         );
-
 
         $em = $this->getDoctrine()->getManager();
         $mtm = $this->get('mm_media.mediatype.manager');
@@ -60,7 +55,7 @@ class UploadController extends Controller
                 $returnData[] = array(
                     'id' => $ms->getId(),
                     'path' => $rawmedia,
-                    'mediatype' => (string)$ms->getMediaType()
+                    'mediatype' => (string) $ms->getMediaType(),
                 );
             }
         }
@@ -68,29 +63,28 @@ class UploadController extends Controller
         return new JsonResponse(
             array(
                 'success' => true,
-                'data' => $returnData
+                'data' => $returnData,
             )
         );
     }
 
-
     /**
-     * gets the filebag and moves uploaded files to filesystem
+     * gets the filebag and moves uploaded files to filesystem.
      *
      * @param FileBag $filebag
+     *
      * @return array reference list of moved files
      */
     protected function processUploadedFiles(FileBag $filebag)
     {
-        $adapter = new LocalAdapter($this->get('kernel')->getRootDir() . '/../web/media');
+        $adapter = new LocalAdapter($this->get('kernel')->getRootDir().'/../web/media');
         $filesystem = new Filesystem($adapter);
-
 
         $processed = array();
 
         if ($filebag->get('files')) {
-            /**
-             * @var UploadedFile $file
+            /*
+             * @var UploadedFile
              */
             foreach ($filebag->get('files') as $file) {
                 // get the unique filepath
@@ -102,15 +96,14 @@ class UploadController extends Controller
             }
         }
 
-
         return $processed;
     }
 
-
     /**
-     * process the given urls
+     * process the given urls.
      *
      * @param Request $request
+     *
      * @return array
      */
     protected function processUrls(Request $request)
@@ -118,7 +111,6 @@ class UploadController extends Controller
         $externalRawMediaUrls = array();
 
         if ($request->get('urls')) {
-
             foreach ($request->get('urls') as $url) {
                 $externalRawMediaUrls[] = $url;
             }
@@ -127,25 +119,25 @@ class UploadController extends Controller
         return $externalRawMediaUrls;
     }
 
-
     /**
-     * return a unique filepath
+     * return a unique filepath.
      *
      * @param UploadedFile $file
+     *
      * @return array
      */
     protected function createUniquePath(UploadedFile $file)
     {
-        $dir = "mmmb/" . substr(strtolower((string)$file->getClientOriginalName()), 0, 2);
+        $dir = 'mmmb/'.substr(strtolower((string) $file->getClientOriginalName()), 0, 2);
 
-        $filename = str_replace(array(' ',$file->getClientOriginalExtension()), '-', $file->getClientOriginalName());
+        $filename = str_replace(array(' ', $file->getClientOriginalExtension()), '-', $file->getClientOriginalName());
 
-        $name = strtolower($filename . uniqid() . '.' . $file->getClientOriginalExtension());
+        $name = strtolower($filename.uniqid().'.'.$file->getClientOriginalExtension());
 
-        return Array(
+        return array(
             'dir' => $dir,
             'filename' => $name,
-            'path' => $dir . '/' . $name
+            'path' => $dir.'/'.$name,
         );
     }
 }

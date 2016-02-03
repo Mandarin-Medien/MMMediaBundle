@@ -10,10 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class HiddenEntityType extends AbstractType
 {
-
     private $manager;
 
-    function __construct(ObjectManager $manager)
+    public function __construct(ObjectManager $manager)
     {
         $this->manager = $manager;
     }
@@ -43,5 +42,4 @@ class HiddenEntityType extends AbstractType
     {
         return 'entity_hidden';
     }
-
 }

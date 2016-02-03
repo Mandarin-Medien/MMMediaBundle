@@ -4,24 +4,19 @@ namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableCollectionTransformer;
-use MandarinMedien\MMMediaBundle\Form\Guess\MediaFormTypeGuesser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Forms;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 
 class UploadCollectionType extends AbstractType
 {
-
     protected $manager;
 
     public function __construct(ObjectManager $manager)
     {
         $this->manager = $manager;
-
     }
 
     /**
@@ -37,10 +32,9 @@ class UploadCollectionType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $resolver->setDefaults(array(
             'multiple' => true,
-            'allowed_filetypes' => null
+            'allowed_filetypes' => null,
         ));
 
         $resolver
@@ -53,12 +47,10 @@ class UploadCollectionType extends AbstractType
         $builder->addModelTransformer(new MediaToMediaSortableCollectionTransformer($this->manager));
     }
 
-
     public function getParent()
     {
         return 'entity_collection_hidden';
     }
-
 
     public function getName()
     {
@@ -67,20 +59,22 @@ class UploadCollectionType extends AbstractType
 
     /**
      * @param Media[] $medias
+     *
      * @return string
      */
     public function getJsonFormatedMedias($medias)
     {
         $array = array();
 
-        foreach($medias as $media)
+        foreach ($medias as $media) {
             $array[] = array(
                 'id' => $media->getId(),
                 'name' => $media->getMediaTypeReference(),
                 'size' => false,
                 'type' => '',
-                'url' => "/media/".$media->getMediaTypeReference()
+                'url' => '/media/'.$media->getMediaTypeReference(),
             );
+        }
 
         return json_encode($array);
     }
