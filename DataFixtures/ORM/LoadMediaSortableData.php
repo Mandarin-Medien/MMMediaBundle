@@ -7,6 +7,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Entity\MediaSortable;
+use MandarinMedien\MMMediaBundle\MediaType\ImageMediaType;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -40,7 +41,7 @@ class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInt
         $media->setName('Media-Name');
 
         $media->setMediaTypeMetadata(array('foo' => 'bar'));
-        $media->setMediaType('mm_media.type.image');
+        $media->setMediaType(new ImageMediaType());
         $media->setMediaTypeReference('image.jpg');
 
         /*
@@ -59,6 +60,6 @@ class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInt
 
     public function getOrder()
     {
-        return 1; // the order in which fixtures will be loaded
+        return 3; // the order in which fixtures will be loaded
     }
 }
