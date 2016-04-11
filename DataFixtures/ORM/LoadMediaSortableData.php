@@ -1,6 +1,6 @@
 <?php
 
-namespace MandarinMedien\EverletterBundle\DataFixtures\ORM;
+namespace MandarinMedien\MMMediaBundle\Bundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
