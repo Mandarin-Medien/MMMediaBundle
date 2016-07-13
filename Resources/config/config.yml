@@ -1,11 +1,11 @@
 mm_media:
     media_types:
         types:
-            - MandarinMedien\MMMediaBundle\MediaType\ImageMediaType
-            - MandarinMedien\MMMediaBundle\MediaType\FileMediaType
-            #- MandarinMedien\MMMediaBundle\MediaType\VideoMediaType
-            - MandarinMedien\MMMediaBundle\MediaType\YoutubeMediaType
-            #- MandarinMedien\MMMediaBundle\MediaType\VimeoMediaType
+            - 'MandarinMedien\MMMediaBundle\MediaType\ImageMediaType'
+            - 'MandarinMedien\MMMediaBundle\MediaType\FileMediaType'
+            #- 'MandarinMedien\MMMediaBundle\MediaType\VideoMediaType'
+            - 'MandarinMedien\MMMediaBundle\MediaType\YoutubeMediaType'
+            #- 'MandarinMedien\MMMediaBundle\MediaType\VimeoMediaType'
 
 assetic:
     assets:
@@ -23,7 +23,6 @@ assetic:
 
 # Twig Configuration
 twig:
-    form:
-        resources:
-            - MMMediaBundle:Form:mmmedia_upload_collection_widget.html.twig
-            - MMMediaBundle:Form:mmmedia_upload_widget.html.twig
+    form_themes:
+        - 'MMMediaBundle:Form:mmmedia_upload_collection_widget.html.twig'
+        - 'MMMediaBundle:Form:mmmedia_upload_widget.html.twig'
