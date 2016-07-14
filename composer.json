@@ -19,6 +19,7 @@
         "MIT"
     ],
     "require":{
+        "symfony/symfony": "^2.3",
         "KnpLabs/Gaufrette":"0.2.*"
     },
     "autoload":{
