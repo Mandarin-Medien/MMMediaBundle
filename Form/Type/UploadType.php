@@ -56,15 +56,12 @@ class UploadType extends AbstractType
         $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
     }
 
+
     public function getParent()
     {
-        return 'entity_hidden';
+        return HiddenEntityType::class;
     }
 
-    public function getName()
-    {
-        return 'mmmedia_upload';
-    }
 
     /**
      * @param Media $media

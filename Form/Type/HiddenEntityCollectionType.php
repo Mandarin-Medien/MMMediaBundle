@@ -11,6 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class HiddenEntityCollectionType extends AbstractType
 {
@@ -41,11 +42,6 @@ class HiddenEntityCollectionType extends AbstractType
 
     public function getParent()
     {
-        return 'collection';
-    }
-
-    public function getName()
-    {
-        return 'entity_collection_hidden';
+        return CollectionType::class;
     }
 }

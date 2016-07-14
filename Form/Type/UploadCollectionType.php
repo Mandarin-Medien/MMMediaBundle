@@ -49,13 +49,9 @@ class UploadCollectionType extends AbstractType
 
     public function getParent()
     {
-        return 'entity_collection_hidden';
+        return HiddenEntityCollectionType::class;
     }
 
-    public function getName()
-    {
-        return 'mmmedia_upload_collection';
-    }
 
     /**
      * @param Media[] $medias

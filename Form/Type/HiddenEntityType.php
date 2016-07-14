@@ -6,7 +6,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use MandarinMedien\MMMediaBundle\Form\DataTransformer\EntityToIdTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class HiddenEntityType extends AbstractType
 {
@@ -23,7 +24,7 @@ class HiddenEntityType extends AbstractType
         $builder->addModelTransformer($transformer);
     }
 
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setRequired(array('class'))
@@ -35,11 +36,6 @@ class HiddenEntityType extends AbstractType
 
     public function getParent()
     {
-        return 'hidden';
-    }
-
-    public function getName()
-    {
-        return 'entity_hidden';
+        return HiddenType::class;
     }
 }
