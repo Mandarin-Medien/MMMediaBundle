@@ -55,4 +55,14 @@ class MediaTypeType extends StringType
 
         return $this;
     }
+
+    /**
+     * @param array            $fieldDeclaration
+     * @param AbstractPlatform $platform
+     * @return string
+     */
+    public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    {
+        return sprintf('VARCHAR(%d) COMMENT \'(DC2Type:mmmediabundle_mediatype)\'', $fieldDeclaration['length']);
+    }
 }
