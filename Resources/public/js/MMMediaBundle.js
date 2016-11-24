@@ -91,11 +91,11 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
         var $element = document.getElementById(this.id.replace('#', ''));
 
         if (document.createEvent) {
-            var $event = document.createEvent("HTMLEvents");
+            $event = document.createEvent("HTMLEvents");
 
             $event.initEvent("MMMediaBundleFileDropzone.afterInit", true, true);
         } else {
-            var $event = document.createEventObject();
+            $event = document.createEventObject();
             $event.eventType = "MMMediaBundleFileDropzone.afterInit";
         }
 
@@ -172,6 +172,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
             myDropzone.files.push(mock);
             myDropzone.emit('addedfile', mock);
+
             myDropzone.createThumbnailFromUrl(mock, mock.url);
             myDropzone.emit('complete', mock);
         }
@@ -235,6 +236,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
     var $id_dropzone_preview = _id + '_previews';
 
     var $options = {
+        thumbnailWidth: 800,
+        thumbnailHeight: 600,
         url: _url
         // The configuration we've talked about above
         , autoProcessQueue: true
