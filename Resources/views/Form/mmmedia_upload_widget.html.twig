@@ -20,10 +20,10 @@
              data-dictMaxFilesExceeded="{{ 'dictMaxFilesExceeded'|trans }}"
 
         ></div>
-
         <div class="dropzone dropzone-previews" id="dz_{{ id }}_FormUploader_previews"></div>
-
-
-
     {% endspaceless %}
+{% endblock %}
+
+{% block upload_row %}
+    {{- block('form_row') -}}
 {% endblock %}
