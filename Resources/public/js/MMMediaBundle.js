@@ -275,10 +275,7 @@ function MMMediaBundleFileDropzoneInitiateEvents() {
 }
 
 
-/**
- * Start loading the dom is rdy
- */
-MMMediaBundleDomReady(function (event) {
+var MMMediaBundleInit = function (event) {
 
     var elements = document.getElementsByClassName('mmmb-dropzone');
 
@@ -333,4 +330,10 @@ MMMediaBundleDomReady(function (event) {
     MMMediaBundleFileDropzoneInitiateEvents();
 
 
-});
+};
+
+
+/**
+ * Start loading the dom is rdy
+ */
+MMMediaBundleDomReady(MMMediaBundleInit);
