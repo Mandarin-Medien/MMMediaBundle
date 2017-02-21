@@ -271,7 +271,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 }
 
 function MMMediaBundleFileDropzoneInitiateEvents() {
-    $.on('mmcmfadmin:tabs:add:first',MMMediaBundleInit);
+    $(document).on('mmcmfadmin:tabs:add:first',MMMediaBundleInit);
 }
 
 
