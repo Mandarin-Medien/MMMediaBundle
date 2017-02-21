@@ -271,7 +271,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 }
 
 function MMMediaBundleFileDropzoneInitiateEvents() {
-
+    $.on('mmcmfadmin:tabs:add:first',MMMediaBundleInit);
 }
 
 
@@ -328,8 +328,6 @@ var MMMediaBundleInit = function (event) {
     }
 
     MMMediaBundleFileDropzoneInitiateEvents();
-
-
 };
 
 
@@ -337,3 +335,5 @@ var MMMediaBundleInit = function (event) {
  * Start loading the dom is rdy
  */
 MMMediaBundleDomReady(MMMediaBundleInit);
+
+// CmfAdminBundle integration
