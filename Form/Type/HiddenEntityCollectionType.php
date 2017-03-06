@@ -8,6 +8,7 @@
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use MandarinMedien\MMMediaBundle\Entity\Media;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
@@ -31,7 +32,7 @@ class HiddenEntityCollectionType extends AbstractType
             'allow_delete' => true,
             'type' => new HiddenEntityType($this->manager),
             'options' => array(
-                'class' => 'MandarinMedien\MMMediaBundle\Entity\Media',
+                'class' => Media::class
             ),
         ));
     }

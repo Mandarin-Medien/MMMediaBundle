@@ -42,7 +42,7 @@ class UploadType extends AbstractType
     {
         $resolver->setDefaults(array(
             'multiple' => false,
-            'class' => 'MandarinMedien\MMMediaBundle\Entity\Media',
+            'class' => Media::class,
             'allowed_filetypes' => null,
         ));
 

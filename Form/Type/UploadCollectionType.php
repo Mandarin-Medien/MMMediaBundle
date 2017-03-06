@@ -3,6 +3,7 @@
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableCollectionTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
