@@ -30,8 +30,8 @@ class HiddenEntityCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'allow_add' => true,
             'allow_delete' => true,
-            'type' => new HiddenEntityType($this->manager),
-            'options' => array(
+            'entry_type' =>  HiddenEntityType::class,
+            'entry_options' => array(
                 'class' => Media::class
             ),
         ));
