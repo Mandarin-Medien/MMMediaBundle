@@ -12,6 +12,7 @@ MandarinMedien\MMMediaBundle\Entity\MediaSortable:
             type: integer
     manyToOne:
         media:
+            fetch: EAGER
             targetEntity: MandarinMedien\MMMediaBundle\Entity\Media
             cascade:
                 - persist
