@@ -43,19 +43,20 @@ class ImageMediaType extends BaseMediaType
      *
      * @return string
      */
-    public function getPreview(MediaInterface $media, array $options = null)
-    {
-        $self_options = array('html' => array('class' => array(self::NAME),
-																							'alt' => ''));
+	public function getPreview(MediaInterface $media, array $options = null)
+	{
+		$self_options = array('html' => array('class' => array(self::NAME)));
 
-        if (is_array($options)) {
-            $options = array_merge_recursive($options, $self_options);
-        } else {
-            $options = $self_options;
-        }
 
-        $html = '<img src="/media/'.$media->getMediaTypeReference().'" class="'.implode(' ', $options['html']['class']).'" alt="'.$options['html']['alt'].'"  />';
+		if (is_array($options)) {
+			$options = array_merge_recursive($options, $self_options);
+		} else {
+			$options = $self_options;
+		}
 
-        return $html;
-    }
+
+		$html = '<img src="/media/'.$media->getMediaTypeReference().'" class="'.implode(' ', $options['html']['class']).'" alt="'.($options['html']['alt']?:"").'"  />';
+
+		return $html;
+	}
 }
