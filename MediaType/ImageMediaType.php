@@ -45,7 +45,11 @@ class ImageMediaType extends BaseMediaType
      */
 	public function getPreview(MediaInterface $media, array $options = null)
 	{
-		$self_options = array('html' => array('class' => array(self::NAME)));
+		$self_options = array(
+		    'html' => array(
+		        'class' => array(self::NAME)),
+                'alt' => ''
+        );
 
 
 		if (is_array($options)) {
