@@ -47,9 +47,9 @@ class ImageMediaType extends BaseMediaType
 	{
 		$self_options = array(
 		    'html' => array(
-		        'class' => array(self::NAME)),
+		        'class' => array(self::NAME),
                 'alt' => ''
-        );
+            ));
 
 
 		if (is_array($options)) {
