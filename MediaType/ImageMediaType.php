@@ -58,8 +58,16 @@ class ImageMediaType extends BaseMediaType
             $options = $self_options;
         }
 
+        $class = $options['html']['class'];
 
-        $html = '<img src="/media/' . $media->getMediaTypeReference() . '" class="' . implode(' ', $options['html']['class']) . '" alt="' . (isset($options['html']['alt']) ? $options['html']['alt'] : "") . '"  />';
+        if(is_array($class))
+            $class = implode(' ',$class);
+        elseif(!is_string($class))
+            $class = '';
+
+        $alt = (isset($options['html']['alt']) ? $options['html']['alt'] : "");
+
+        $html = '<img src="/media/' . $media->getMediaTypeReference() . '" class="' . $class . '" alt="' . $alt . '"  />';
 
         return $html;
     }
