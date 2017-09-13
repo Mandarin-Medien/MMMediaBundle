@@ -5,6 +5,7 @@
  * Date: 11.11.15
  * Time: 14:21.
  */
+
 namespace MandarinMedien\MMMediaBundle\MediaType;
 
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
@@ -39,28 +40,27 @@ class ImageMediaType extends BaseMediaType
 
     /**
      * @param MediaInterface $media
-     * @param array|null     $options
+     * @param array|null $options
      *
      * @return string
      */
-	public function getPreview(MediaInterface $media, array $options = null)
-	{
-		$self_options = array(
-		    'html' => array(
-		        'class' => array(self::NAME),
+    public function getPreview(MediaInterface $media, array $options = null)
+    {
+        $self_options = array(
+            'html' => array(
+                'class' => array(self::NAME),
                 'alt' => ''
             ));
+        
+        if (is_array($options)) {
+            $options = array_merge($options, $self_options);
+        } else {
+            $options = $self_options;
+        }
 
 
-		if (is_array($options)) {
-			$options = array_merge_recursive($options, $self_options);
-		} else {
-			$options = $self_options;
-		}
+        $html = '<img src="/media/' . $media->getMediaTypeReference() . '" class="' . implode(' ', $options['html']['class']) . '" alt="' . ($options['html']['alt'] ?: "") . '"  />';
 
-
-		$html = '<img src="/media/'.$media->getMediaTypeReference().'" class="'.implode(' ', $options['html']['class']).'" alt="'.($options['html']['alt']?:"").'"  />';
-
-		return $html;
-	}
+        return $html;
+    }
 }
