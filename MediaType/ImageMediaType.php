@@ -58,7 +58,7 @@ class ImageMediaType extends BaseMediaType
             $options = $self_options;
         }
 
-        $class = $options['html']['class'];
+        $class = (isset($options['html']['class']) ? $options['html']['class'] : "");
 
         if(is_array($class))
             $class = implode(' ',$class);
