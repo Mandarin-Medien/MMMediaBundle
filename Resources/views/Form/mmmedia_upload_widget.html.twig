@@ -1,4 +1,4 @@
-{% block mmmedia_upload_widget %}
+{% block upload_widget %}
     {% spaceless %}
         <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
              data-url="{{ path('media_upload') }}"
@@ -20,10 +20,10 @@
              data-dictMaxFilesExceeded="{{ 'dictMaxFilesExceeded'|trans }}"
 
         ></div>
-
         <div class="dropzone dropzone-previews" id="dz_{{ id }}_FormUploader_previews"></div>
-
-
-
     {% endspaceless %}
+{% endblock %}
+
+{% block upload_row %}
+    {{- block('form_row') -}}
 {% endblock %}

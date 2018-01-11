@@ -39,12 +39,12 @@ class Media implements MediaInterface
     protected $author;
 
     /**
-     * @var datetime
+     * @var \DateTime
      */
     protected $createdAt;
 
     /**
-     * @var datetime
+     * @var \DateTime
      */
     protected $updatedAt;
 
@@ -163,7 +163,7 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return datetime
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -171,7 +171,7 @@ class Media implements MediaInterface
     }
 
     /**
-     * @param datetime $createdAt
+     * @param \DateTime $createdAt
      *
      * @return Media
      */
@@ -183,7 +183,7 @@ class Media implements MediaInterface
     }
 
     /**
-     * @return datetime
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -191,7 +191,7 @@ class Media implements MediaInterface
     }
 
     /**
-     * @param datetime $updatedAt
+     * @param \DateTime $updatedAt
      *
      * @return Media
      */

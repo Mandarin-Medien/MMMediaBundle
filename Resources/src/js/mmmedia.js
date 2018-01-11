@@ -1,7 +1,6 @@
-/**
- * Created by tonigurski on 19.11.15.
- */
+require('dragula');
 
+import Dropzone from 'dropzone';
 
 /**
  * prevents Dropzone from autoloading
@@ -59,7 +58,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
         if (!_file.id)
             return;
 
-        var reference = document.createElement('input')
+        var reference = document.createElement('input');
         reference.type = 'hidden';
         reference.name = _fieldName;
         reference.value = _file.id;
@@ -75,7 +74,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
         if (_file) {
 
-            var $reference = $this.getHiddenEntityInput(_file)
+            var $reference = $this.getHiddenEntityInput(_file);
 
             if ($reference)
                 _file.previewElement.appendChild($reference);
@@ -147,7 +146,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
                 if (response && response.success) {
 
-                    for (tFile in response.data) {
+                    for (let tFile in response.data) {
 
                         file.id = response.data[0].id;
 
@@ -267,7 +266,6 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
      * loads the Dropzone instance
      */
     this.dropzone = new Dropzone(_id, $options);
-    console.log('onstans',_id,this.dropzone);
 }
 
 /**
@@ -285,8 +283,6 @@ function MMMediaBundleFileDropzoneInitiateEvents() {
 
 
 var MMMediaBundleInit = function (event) {
-
-    console.log('MMMediaBundleInit::init');
 
     var elements = document.getElementsByClassName('mmmb-dropzone');
 

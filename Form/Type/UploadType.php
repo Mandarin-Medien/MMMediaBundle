@@ -42,7 +42,7 @@ class UploadType extends AbstractType
     {
         $resolver->setDefaults(array(
             'multiple' => false,
-            'class' => 'MandarinMedien\MMMediaBundle\Entity\Media',
+            'class' => Media::class,
             'allowed_filetypes' => null,
         ));
 
@@ -56,15 +56,12 @@ class UploadType extends AbstractType
         $builder->addModelTransformer(new MediaToMediaSortableTransformer($this->manager));
     }
 
+
     public function getParent()
     {
-        return 'entity_hidden';
+        return HiddenEntityType::class;
     }
 
-    public function getName()
-    {
-        return 'mmmedia_upload';
-    }
 
     /**
      * @param Media $media

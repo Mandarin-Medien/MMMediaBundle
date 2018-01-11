@@ -7,6 +7,8 @@
  */
 namespace MandarinMedien\MMMediaBundle\Model;
 
+use MandarinMedien\MMMediaBundle\Entity\Media;
+
 interface MediaInterface
 {
     /**
@@ -83,14 +85,14 @@ interface MediaInterface
     /**
      * returns the datetime when the the media file got created.
      *
-     * @return datetime
+     * @return \DateTime
      */
     public function getCreatedAt();
 
     /**
      * sets the datetime when the the media file got created.
      *
-     * @param datetime $createdAt
+     * @param \DateTime $createdAt
      *
      * @return Media
      */
@@ -99,14 +101,14 @@ interface MediaInterface
     /**
      * returns the datetime when the the media file got updated.
      *
-     * @return datetime
+     * @return \DateTime
      */
     public function getUpdatedAt();
 
     /**
      * sets the datetime when the the media file got created.
      *
-     * @param datetime $updatedAt
+     * @param \DateTime $updatedAt
      *
      * @return Media
      */

@@ -3,6 +3,7 @@
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableCollectionTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,13 +50,9 @@ class UploadCollectionType extends AbstractType
 
     public function getParent()
     {
-        return 'entity_collection_hidden';
+        return HiddenEntityCollectionType::class;
     }
 
-    public function getName()
-    {
-        return 'mmmedia_upload_collection';
-    }
 
     /**
      * @param Media[] $medias
