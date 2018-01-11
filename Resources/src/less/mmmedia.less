@@ -1,0 +1,53 @@
+@import "../../../node_modules/dropzone/dist/dropzone.css";
+@import "../../../node_modules/dragula/dist/dragula.css";
+
+
+.dropzone {
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+
+
+  .dz-preview {
+
+    -webkit-box-shadow: 3px 3px 8px -5px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow: 3px 3px 8px -5px rgba(0, 0, 0, 0.67);
+    box-shadow: 3px 3px 8px -5px rgba(0, 0, 0, 0.67);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+
+    cursor: move;
+
+    &.dz-file-preview .dz-image,
+    .dz-image
+    {
+      border-radius: 0;
+      img{
+        max-width: 100%;
+      }
+
+    }
+
+    .dz-remove {
+
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+
+
+}
