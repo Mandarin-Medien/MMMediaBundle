@@ -23,11 +23,8 @@
         "KnpLabs/Gaufrette":"0.2.*"
     },
     "autoload":{
-        "psr-0":{
-            "MandarinMedien\\MMMediaBundle":""
-        }
+        "psr-4": { "MandarinMedien\\MMMediaBundle\\":""}
     },
-    "target-dir":"MandarinMedien/MMMediaBundle",
     "extra":{
         "branch-alias":{
             "dev-master":"0.1-dev"
