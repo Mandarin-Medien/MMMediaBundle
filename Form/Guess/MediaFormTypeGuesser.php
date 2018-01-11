@@ -10,6 +10,8 @@ namespace MandarinMedien\MMMediaBundle\Form\Guess;
 use Symfony\Component\Form\FormTypeGuesserInterface;
 use Symfony\Component\Form\Guess\TypeGuess;
 use Symfony\Component\Form\Guess\Guess;
+use MandarinMedien\MMMediaBundle\Form\Type\UploadType;
+use MandarinMedien\MMMediaBundle\Form\Type\UploadCollectionType;
 
 class MediaFormTypeGuesser implements FormTypeGuesserInterface
 {
@@ -20,9 +22,9 @@ class MediaFormTypeGuesser implements FormTypeGuesserInterface
         if (null !== ($annotations = $this->readPhpDocAnnotations($class, $property))) {
             if (in_array($annotations[2], $this->entities)) {
                 if (isset($annotations[3])) {
-                    return new TypeGuess('mmmedia_upload_collection', array(), Guess::VERY_HIGH_CONFIDENCE);
+                    return new TypeGuess(UploadCollectionType::class, array(), Guess::VERY_HIGH_CONFIDENCE);
                 } else {
-                    return new TypeGuess('mmmedia_upload', array(), Guess::VERY_HIGH_CONFIDENCE);
+                    return new TypeGuess(UploadType::class, array(), Guess::VERY_HIGH_CONFIDENCE);
                 }
             }
         }

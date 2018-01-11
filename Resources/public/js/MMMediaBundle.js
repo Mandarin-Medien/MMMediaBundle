@@ -4,7 +4,7 @@
 
 
 /**
- * preveneds Dropzone from autoloading
+ * prevents Dropzone from autoloading
  * @type {boolean}
  */
 Dropzone.autoDiscover = false;
@@ -91,11 +91,11 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
         var $element = document.getElementById(this.id.replace('#', ''));
 
         if (document.createEvent) {
-            var $event = document.createEvent("HTMLEvents");
+            $event = document.createEvent("HTMLEvents");
 
             $event.initEvent("MMMediaBundleFileDropzone.afterInit", true, true);
         } else {
-            var $event = document.createEventObject();
+            $event = document.createEventObject();
             $event.eventType = "MMMediaBundleFileDropzone.afterInit";
         }
 
@@ -162,7 +162,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
          * add already stored files to the widget
          */
 
-            //temporaty add this event to get the real formated dropzone-file objects
+        //temporaty add this event to get the real formated dropzone-file objects
         myDropzone.on("addedfile", $this.appendHiddenEntityInput);
 
         //loops thought the presetted files and appends them to the dropzone_preview
@@ -172,6 +172,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
             myDropzone.files.push(mock);
             myDropzone.emit('addedfile', mock);
+
             myDropzone.createThumbnailFromUrl(mock, mock.url);
             myDropzone.emit('complete', mock);
         }
@@ -194,7 +195,6 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
         }
 
 
-
         myDropzone.on("success", function (file, responseText) {
             myDropzone.responseText = responseText;
         });
@@ -207,7 +207,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
             /**
              * @Todo temporary fix for DropZone ...need to be removed if the file variable is fixed
              */
-            setTimeout(function(){
+            setTimeout(function () {
 
                 for (var i in myDropzone.responseText.data) {
 
@@ -219,7 +219,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
                 // Handle the responseText here. For example, add the text to the preview element:
                 if (obj)
                     tFile.previewTemplate.querySelector('.dz-filename span').innerHTML = obj.path;
-            },100);
+            }, 100);
 
         });
 
@@ -235,6 +235,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
     var $id_dropzone_preview = _id + '_previews';
 
     var $options = {
+        thumbnailWidth: 800,
+        thumbnailHeight: 600,
         url: _url
         // The configuration we've talked about above
         , autoProcessQueue: true
@@ -265,17 +267,26 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
      * loads the Dropzone instance
      */
     this.dropzone = new Dropzone(_id, $options);
+    console.log('onstans',_id,this.dropzone);
 }
-
-function MMMediaBundleFileDropzoneInitiateEvents() {
-
-}
-
 
 /**
- * Start loading the dom is rdy
+ * Custom Bundle Events
+ * currently is used to build a bridge between all different MM bundles
  */
-MMMediaBundleDomReady(function (event) {
+function MMMediaBundleFileDropzoneInitiateEvents() {
+
+    // mandarinmedien/mmcmfadminbundle
+    $(document).on('mmcmfadmin:tabs:add:first', MMMediaBundleInit);
+
+    // mandarinmedien/mmcmfcontentbundle
+    $(document).on('modalOpen.settingsForm.MMCmfContentFieldEditor', MMMediaBundleInit);
+}
+
+
+var MMMediaBundleInit = function (event) {
+
+    console.log('MMMediaBundleInit::init');
 
     var elements = document.getElementsByClassName('mmmb-dropzone');
 
@@ -328,6 +339,10 @@ MMMediaBundleDomReady(function (event) {
     }
 
     MMMediaBundleFileDropzoneInitiateEvents();
+};
 
 
-});
+/**
+ * Start loading the dom is rdy
+ */
+MMMediaBundleDomReady(MMMediaBundleInit);

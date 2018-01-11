@@ -8,9 +8,11 @@
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use MandarinMedien\MMMediaBundle\Entity\Media;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class HiddenEntityCollectionType extends AbstractType
 {
@@ -28,9 +30,9 @@ class HiddenEntityCollectionType extends AbstractType
         $resolver->setDefaults(array(
             'allow_add' => true,
             'allow_delete' => true,
-            'type' => new HiddenEntityType($this->manager),
-            'options' => array(
-                'class' => 'MandarinMedien\MMMediaBundle\Entity\Media',
+            'entry_type' =>  HiddenEntityType::class,
+            'entry_options' => array(
+                'class' => Media::class
             ),
         ));
     }
@@ -41,11 +43,6 @@ class HiddenEntityCollectionType extends AbstractType
 
     public function getParent()
     {
-        return 'collection';
-    }
-
-    public function getName()
-    {
-        return 'entity_collection_hidden';
+        return CollectionType::class;
     }
 }
