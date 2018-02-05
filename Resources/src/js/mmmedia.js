@@ -308,8 +308,6 @@ const MMMediaBundleInit = function (event) {
         const multipleValue = dropzone.getAttribute('data-multiple');
         const multiple = !(multipleValue === "false" || multipleValue === "" || multipleValue === "0");
 
-        console.log('multiple',multiple);
-
         const _options = {
 
             acceptedFiles: fileTypes,
