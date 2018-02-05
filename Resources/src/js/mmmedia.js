@@ -1,4 +1,4 @@
-require('dragula');
+import dragula from 'dragula';
 
 import Dropzone from 'dropzone';
 
@@ -74,7 +74,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
         if (_file) {
 
-            var $reference = $this.getHiddenEntityInput(_file);
+            const $reference = $this.getHiddenEntityInput(_file);
 
             if ($reference)
                 _file.previewElement.appendChild($reference);
@@ -86,8 +86,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
      */
     this.fireAfterInitEvent = function (_DropzoneDOM) {
 
-        var $event;
-        var $element = document.getElementById(this.id.replace('#', ''));
+        let $event;
+        const $element = document.getElementById(this.id.replace('#', ''));
 
         if (document.createEvent) {
             $event = document.createEvent("HTMLEvents");
@@ -111,7 +111,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
      */
     this.initCallback = function () {
 
-        var myDropzone = this;
+        const myDropzone = this;
 
         /**
          * checks if its an mutiple field and adds the related event
@@ -126,7 +126,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
                 if (response && response.success) {
 
-                    for (file in response.data) {
+                    for (let file in response.data) {
 
                         files[file].id = response.data[file].id;
 
@@ -165,8 +165,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
         myDropzone.on("addedfile", $this.appendHiddenEntityInput);
 
         //loops thought the presetted files and appends them to the dropzone_preview
-        for (var i = 0; i < _files.length; i++) {
-            var mock = _files[i];
+        for (let i = 0; i < _files.length; i++) {
+            const mock = _files[i];
             mock.accepted = true;
 
             myDropzone.files.push(mock);
@@ -185,7 +185,7 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
          */
         if (_multiple) {
 
-            var $dragula = dragula([document.querySelector($id_dropzone_preview)],
+            dragula([document.querySelector($id_dropzone_preview)],
                 {
                     direction: 'horizontal',
                     mirrorContainer: document.querySelector($id_dropzone_preview)
@@ -200,15 +200,15 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
 
         myDropzone.on("complete", function (file) {
 
-            var tFile = file;
-            var obj = null;
+            const tFile = file;
+            let obj = null;
 
             /**
              * @Todo temporary fix for DropZone ...need to be removed if the file variable is fixed
              */
             setTimeout(function () {
 
-                for (var i in myDropzone.responseText.data) {
+                for (let i in myDropzone.responseText.data) {
 
                     if (myDropzone.responseText.data[i].id == tFile.id) {
                         obj = myDropzone.responseText.data[i];
@@ -231,9 +231,9 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
      * dom id of preview container
      * @type {string}
      */
-    var $id_dropzone_preview = _id + '_previews';
+    const $id_dropzone_preview = _id + '_previews';
 
-    var $options = {
+    const $options = {
         thumbnailWidth: 800,
         thumbnailHeight: 600,
         url: _url
@@ -257,8 +257,8 @@ function MMMediaBundleFileDropzone(_id, _url, _fieldName, _multiple, _files, _op
     /**
      * merge aditional given options
      */
-    if (typeof _options == "object")
-        for (var key in _options)
+    if (typeof _options === "object")
+        for (let key in _options)
             $options[key] = _options[key];
 
 
@@ -282,37 +282,35 @@ function MMMediaBundleFileDropzoneInitiateEvents() {
 }
 
 
-var MMMediaBundleInit = function (event) {
+const MMMediaBundleInit = function (event) {
 
-    var elements = document.getElementsByClassName('mmmb-dropzone');
+    const elements = document.getElementsByClassName('mmmb-dropzone');
 
-    for (var i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
 
-        var dropzone = elements[i];
+        const dropzone = elements[i];
 
-        var url = dropzone.getAttribute('data-url');
-        var fieldName = dropzone.getAttribute('data-field-name');
-        var id = dropzone.getAttribute('id');
+        const url = dropzone.getAttribute('data-url');
+        const fieldName = dropzone.getAttribute('data-field-name');
+        const id = dropzone.getAttribute('id');
 
         //fetches preloaded Files
-        var files = dropzone.getAttribute('data-files');
+        let files = dropzone.getAttribute('data-files');
         files = JSON.parse(files);
 
         // get the allowed filetypes
-        var fileTypes = dropzone.getAttribute('data-accepted-files');
+        let fileTypes = dropzone.getAttribute('data-accepted-files');
         fileTypes = fileTypes ? fileTypes : false;
 
         /*
          * @TODO: better bool check
          */
-        var multiple = dropzone.getAttribute('data-multiple');
+        const multipleValue = dropzone.getAttribute('data-multiple');
+        const multiple = !(multipleValue === "false" || multipleValue === "" || multipleValue === "0");
 
-        if (multiple == "false" || multiple == "" || multiple == "0")
-            multiple = false;
-        else
-            multiple = true;
+        console.log('multiple',multiple);
 
-        var _options = {
+        const _options = {
 
             acceptedFiles: fileTypes,
 
