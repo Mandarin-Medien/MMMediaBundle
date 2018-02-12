@@ -2,6 +2,7 @@ services:
     mm_media.mediatype.manager:
         class: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
         arguments: ['mm_media.media_types.types']
+        public: true
 
     form.type.mmmedia_upload:
         class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
