@@ -20,7 +20,7 @@
     ],
     "require":{
         "symfony/symfony": "^3.4|^4.0",
-        "KnpLabs/Gaufrette":"^0.6"
+        "KnpLabs/Gaufrette":"1.0.x-dev"
     },
     "autoload":{
         "psr-4": { "MandarinMedien\\MMMediaBundle\\":""}
