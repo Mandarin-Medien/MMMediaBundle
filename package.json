@@ -1,6 +1,6 @@
 {
   "name": "mmmmediabundle",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "Symfony Media Bundle",
   "main": "./Resources/src/js/mmmedia.js",
   "scripts": {
