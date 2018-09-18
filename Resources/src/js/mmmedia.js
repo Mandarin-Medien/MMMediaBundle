@@ -282,13 +282,16 @@ function MMMediaBundleFileDropzoneInitiateEvents() {
 }
 
 
-const MMMediaBundleInit = function (event) {
+export const MMMediaBundleInit = function (event) {
 
     const elements = document.getElementsByClassName('mmmb-dropzone');
 
     for (let i = 0; i < elements.length; i++) {
 
         const dropzone = elements[i];
+
+        if (dropzone.className.indexOf('dz-clickable') > -1)
+            continue;
 
         const url = dropzone.getAttribute('data-url');
         const fieldName = dropzone.getAttribute('data-field-name');
