@@ -29,6 +29,7 @@ class ImageMediaType extends BaseMediaType
             'jpg',
             'gif',
             'tiff',
+            'svg',
         );
 
         if (in_array(strtolower(pathinfo($data, PATHINFO_EXTENSION)), $allowedExtensions)) {
