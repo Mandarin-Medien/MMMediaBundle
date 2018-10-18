@@ -16,4 +16,5 @@ MandarinMedien\MMMediaBundle\Entity\MediaSortable:
             targetEntity: MandarinMedien\MMMediaBundle\Entity\Media
             cascade:
                 - persist
+                - remove
     lifecycleCallbacks: {}
