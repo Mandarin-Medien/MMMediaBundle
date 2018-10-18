@@ -13,8 +13,7 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             length: 255
             nullable: true
         description:
-            type: string
-            length: 255
+            type: text
             nullable: true
         createdAt:
             type: datetime
