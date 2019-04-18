@@ -17,4 +17,6 @@ MandarinMedien\MMMediaBundle\Entity\MediaSortable:
             cascade:
                 - persist
                 - remove
+            joinColumn:
+                onDelete: "SET NULL"
     lifecycleCallbacks: {}
