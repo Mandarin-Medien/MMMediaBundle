@@ -38,9 +38,14 @@ class UploadCollectionType extends AbstractType
             'allowed_filetypes' => null,
         ));
 
+        $resolver->setDefined('max_filesize');
+
         $resolver
             ->setAllowedTypes('multiple', 'boolean')
-            ->setAllowedTypes('allowed_filetypes', array('null', 'array'));
+            ->setAllowedTypes('allowed_filetypes', array('null', 'array'))
+            ->setAllowedTypes('max_filesize', array("integer"));
+
+        $resolver->setDefault("max_filesize", 0);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
