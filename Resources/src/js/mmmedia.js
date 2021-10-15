@@ -305,6 +305,10 @@ export const MMMediaBundleInit = function (event) {
         let fileTypes = dropzone.getAttribute('data-accepted-files');
         fileTypes = fileTypes ? fileTypes : false;
 
+        let maxFilesize = dropzone.getAttribute('data-max-filesize');
+        maxFilesize = maxFilesize ? maxFilesize : undefined;
+
+
         /*
          * @TODO: better bool check
          */
@@ -314,6 +318,7 @@ export const MMMediaBundleInit = function (event) {
         const _options = {
 
             acceptedFiles: fileTypes,
+            maxFilesize: maxFilesize,
 
             dictDefaultMessage: dropzone.getAttribute('data-dictDefaultMessage'), // The message that gets displayed before any files are dropped. This is normally replaced by an image but defaults to "Drop files here to upload"'
             dictFallbackMessage: dropzone.getAttribute('data-dictFallbackMessage'), // If the browser is not supported, the default message will be replaced with this text. Defaults to "Your browser does not support drag'n'drop file uploads."'
