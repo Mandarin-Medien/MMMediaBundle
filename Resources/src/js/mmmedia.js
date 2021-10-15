@@ -306,7 +306,7 @@ export const MMMediaBundleInit = function (event) {
         fileTypes = fileTypes ? fileTypes : false;
 
         let maxFilesize = dropzone.getAttribute('data-max-filesize');
-        maxFilesize = maxFilesize ? maxFilesize : undefined;
+        maxFilesize = parseInt(maxFilesize) ? parseInt(maxFilesize) : undefined;
 
 
         /*

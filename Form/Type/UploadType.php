@@ -47,6 +47,8 @@ class UploadType extends AbstractType
             'allowed_filetypes' => null,
         ));
 
+        $resolver->setDefined('max_filesize');
+
         $resolver
             ->setAllowedTypes('multiple', 'boolean')
             ->setAllowedTypes('allowed_filetypes', array('null', 'array'))
