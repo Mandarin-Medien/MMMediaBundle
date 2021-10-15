@@ -6,6 +6,7 @@
              data-multiple="{% if multiple %}true{% else %}false{% endif %}"
              data-files="{{ value_media_json|e|raw }}"
              data-accepted-files="{{ form.vars.allowed_filetypes|join(',') }}"
+             data-max-filesize="{{ form.vars.max_filesize }}"
 
              data-dictDefaultMessage="{{ 'dictDefaultMessage'|trans }}"
              data-dictFallbackMessage="{{ 'dictFallbackMessage'|trans }}"

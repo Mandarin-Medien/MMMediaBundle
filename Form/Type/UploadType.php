@@ -32,6 +32,7 @@ class UploadType extends AbstractType
     {
         $view->vars['multiple'] = $options['multiple'];
         $view->vars['allowed_filetypes'] = $options['allowed_filetypes'];
+        $view->vars['max_filesize'] = $options['max_filesize'];
 
         $mediaEntity = $this->manager->getRepository('MMMediaBundle:Media')->find((int) $view->vars['value']);
         $view->vars['value_media_json'] = $this->getJsonFormatedMedia($mediaEntity);
@@ -48,7 +49,10 @@ class UploadType extends AbstractType
 
         $resolver
             ->setAllowedTypes('multiple', 'boolean')
-            ->setAllowedTypes('allowed_filetypes', array('null', 'array'));
+            ->setAllowedTypes('allowed_filetypes', array('null', 'array'))
+            ->setAllowedTypes('max_filesize', array("integer"));
+
+        $resolver->setDefault("max_filesize", 0);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
