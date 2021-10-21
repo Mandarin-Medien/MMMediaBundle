@@ -28,6 +28,7 @@ class UploadCollectionType extends AbstractType
         $view->vars['multiple'] = $options['multiple'];
         $view->vars['allowed_filetypes'] = $options['allowed_filetypes'];
         $view->vars['value_media_json'] = $this->getJsonFormatedMedias($view->vars['value']);
+        $view->vars['max_filesize'] = $options['max_filesize'];
         // TODO: implement MediaType Configuration
     }
 
