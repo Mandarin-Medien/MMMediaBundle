@@ -1,8 +1,10 @@
 services:
-    mm_media.mediatype.manager:
-        class: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
+    MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager:
         arguments: ['mm_media.media_types.types']
-        public: true
+
+    mm_media.mediatype.manager:
+      alias: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
+      public: true
 
     form.type.mmmedia_upload:
         class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
