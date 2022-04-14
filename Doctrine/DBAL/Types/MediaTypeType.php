@@ -12,6 +12,12 @@ class MediaTypeType extends StringType
 
     private $mediaTypeManager;
 
+
+    /**
+     * @param $value
+     * @param AbstractPlatform $platform
+     * @return \MandarinMedien\MMMediaBundle\Model\MediaTypeInterface|mixed|null
+     */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         /** @var $mtm MediaTypeManager */
@@ -22,6 +28,13 @@ class MediaTypeType extends StringType
         return $mt ? $mt : null;
     }
 
+
+    /**
+     * @param $value
+     * @param AbstractPlatform $platform
+     * @return mixed|string
+     * @throws \ReflectionException
+     */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if ((new \ReflectionClass($value))->implementsInterface('\MandarinMedien\MMMediaBundle\Model\MediaTypeInterface')) {
@@ -31,6 +44,10 @@ class MediaTypeType extends StringType
         return '';
     }
 
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return self::NAME; // modify to match your constant name

@@ -35,7 +35,7 @@ MandarinMedien\MMMediaBundle\Entity\Media:
             type: string
             length: 255
         mediaTypeMetadata:
-            type: json_array
+            type: json
             nullable: true
 
 

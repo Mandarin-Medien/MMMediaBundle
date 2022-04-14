@@ -7,7 +7,7 @@
  */
 namespace MandarinMedien\MMMediaBundle\Form\DataTransformer;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use MandarinMedien\MMMediaBundle\Entity\MediaSortable;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
@@ -16,7 +16,7 @@ class MediaToMediaSortableCollectionTransformer implements DataTransformerInterf
 {
     private $manager;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(EntityManagerInterface $manager)
     {
         $this->manager = $manager;
     }

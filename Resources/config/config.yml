@@ -10,5 +10,5 @@ mm_media:
 # Twig Configuration
 twig:
     form_themes:
-        - 'MMMediaBundle:Form:mmmedia_upload_collection_widget.html.twig'
-        - 'MMMediaBundle:Form:mmmedia_upload_widget.html.twig'
+        - '@MMMedia/Form/mmmedia_upload_collection_widget.html.twig'
+        - '@MMMedia/Form/mmmedia_upload_widget.html.twig'

@@ -2,15 +2,15 @@
 
 namespace MandarinMedien\MMMediaBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Form\MediaType;
 
 /**
  * Media controller.
  */
-class MediaController extends Controller
+class MediaController extends AbstractController
 {
     /**
      * Lists all Media entities.
@@ -21,7 +21,7 @@ class MediaController extends Controller
 
         $entities = $em->getRepository('MMMediaBundle:Media')->findAll();
 
-        return $this->render('MMMediaBundle:Media:index.html.twig', array(
+        return $this->render('@MMMedia/Media/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -42,7 +42,7 @@ class MediaController extends Controller
             return $this->redirect($this->generateUrl('media_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('MMMediaBundle:Media:new.html.twig', array(
+        return $this->render('@MMMedia/Media/new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView(),
         ));
@@ -75,7 +75,7 @@ class MediaController extends Controller
         $entity = new Media();
         $form = $this->createCreateForm($entity);
 
-        return $this->render('MMMediaBundle:Media:new.html.twig', array(
+        return $this->render('@MMMedia/Media/new.html.twig', array(
             'entity' => $entity,
             'form' => $form->createView(),
         ));
@@ -96,7 +96,7 @@ class MediaController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('MMMediaBundle:Media:show.html.twig', array(
+        return $this->render('@MMMedia/Media/show.html.twig', array(
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -118,7 +118,7 @@ class MediaController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('MMMediaBundle:Media:edit.html.twig', array(
+        return $this->render('@MMMedia/Media/edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -166,7 +166,7 @@ class MediaController extends Controller
             return $this->redirect($this->generateUrl('media_edit', array('id' => $id)));
         }
 
-        return $this->render('MMMediaBundle:Media:edit.html.twig', array(
+        return $this->render('@MMMedia/Media/edit.html.twig', array(
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

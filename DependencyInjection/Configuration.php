@@ -18,8 +18,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('mm_media');
+        $treeBuilder = new TreeBuilder('mm_media');
+        $rootNode = $treeBuilder->getRootNode();
 
         $this->addMediaTypesSection($rootNode);
         // Here you should define the parameters that are allowed to

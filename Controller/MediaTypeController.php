@@ -7,9 +7,9 @@
  */
 namespace MandarinMedien\MMMediaBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class MediaTypeController extends Controller
+class MediaTypeController extends AbstractController
 {
     /**
      * get the matching MediaType by raw media data.
