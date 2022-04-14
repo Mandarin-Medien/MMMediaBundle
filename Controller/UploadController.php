@@ -7,7 +7,10 @@
  */
 namespace MandarinMedien\MMMediaBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\EntityManagerInterface;
+use MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\FileBag;
@@ -15,9 +18,34 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use MandarinMedien\MMMediaBundle\Model\MediaInterface;
 use Gaufrette\Filesystem;
 use Gaufrette\Adapter\Local as LocalAdapter;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
 
-class UploadController extends Controller
+class UploadController extends AbstractController
 {
+
+
+
+    /**
+     * @var HttpKernelInterface
+     */
+    private $kernel;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $manager;
+    /**
+     * @var MediaTypeManager
+     */
+    private $mediaTypeManager;
+
+    public function __construct(KernelInterface $kernel, EntityManagerInterface $manager, MediaTypeManager $mediaTypeManager)
+    {
+        $this->kernel = $kernel;
+        $this->manager = $manager;
+        $this->mediaTypeManager = $mediaTypeManager;
+    }
+
     /**
      * retrieves and handles the ajax upload action
      * to store uploaded files on file system.
@@ -38,8 +66,8 @@ class UploadController extends Controller
             $this->processUrls($request)
         );
 
-        $em = $this->getDoctrine()->getManager();
-        $mtm = $this->get('mm_media.mediatype.manager');
+        $em = $this->manager;
+        $mtm = $this->mediaTypeManager;
 
         $returnData = array();
 
@@ -77,7 +105,19 @@ class UploadController extends Controller
      */
     protected function processUploadedFiles(FileBag $filebag)
     {
-        $adapter = new LocalAdapter($this->get('kernel')->getRootDir().'/../web/media');
+
+
+        $v3path = $this->kernel->getRootDir().'/../web/media';
+        $v4path = $this->kernel->getRootDir().'/../public/media';
+        $path = $v3path;
+
+
+        if(is_dir($v4path)) {
+            $path = $v4path;
+        }
+
+
+        $adapter = new LocalAdapter($path);
         $filesystem = new Filesystem($adapter);
 
         $processed = array();

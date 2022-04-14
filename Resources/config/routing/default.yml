@@ -1,4 +1,4 @@
 media_default_index:
     path:     /index
-    defaults: { _controller: "MMMediaBundle:Default:index" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\DefaultController::indexAction }
     methods:  [GET, DELETE]

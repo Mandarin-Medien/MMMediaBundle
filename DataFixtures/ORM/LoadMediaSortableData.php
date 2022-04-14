@@ -4,7 +4,7 @@ namespace MandarinMedien\MMMediaBundle\Bundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Entity\MediaSortable;
 use MandarinMedien\MMMediaBundle\MediaType\ImageMediaType;
@@ -29,7 +29,7 @@ class LoadMediaSortableData extends AbstractFixture implements OrderedFixtureInt
     /**
      * {@inheritdoc}
      */
-    public function load(ObjectManager $manager)
+    public function load(EntityManagerInterface $manager)
     {
         /*
          * creates a Media of type mm_media.type.image

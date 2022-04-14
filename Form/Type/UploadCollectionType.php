@@ -2,7 +2,7 @@
 
 namespace MandarinMedien\MMMediaBundle\Form\Type;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use MandarinMedien\MMMediaBundle\Entity\Media;
 use MandarinMedien\MMMediaBundle\Form\DataTransformer\MediaToMediaSortableCollectionTransformer;
 use Symfony\Component\Form\AbstractType;
@@ -15,7 +15,7 @@ class UploadCollectionType extends AbstractType
 {
     protected $manager;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(EntityManagerInterface $manager)
     {
         $this->manager = $manager;
     }

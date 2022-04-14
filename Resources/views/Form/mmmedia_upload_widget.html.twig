@@ -1,5 +1,5 @@
 {% block upload_widget %}
-    {% spaceless %}
+    {% apply spaceless %}
         <div id="dz_{{ id }}_FormUploader" class="dropzone mmmb-dropzone"
              data-url="{{ path('media_upload') }}"
              data-field-name="{{ full_name }}{% if multiple %}[]{% endif %}"
@@ -22,7 +22,7 @@
 
         ></div>
         <div class="dropzone dropzone-previews" id="dz_{{ id }}_FormUploader_previews"></div>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock %}
 
 {% block upload_row %}

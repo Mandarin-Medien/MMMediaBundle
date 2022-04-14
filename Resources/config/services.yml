@@ -1,36 +1,50 @@
 services:
-    MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager:
-        arguments: ['mm_media.media_types.types']
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
 
     mm_media.mediatype.manager:
-      alias: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
-      public: true
+        class: MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager
+        arguments: ['mm_media.media_types.types']
+        public: true
+
+    MandarinMedien\MMMediaBundle\MediaType\MediaTypeManager: '@mm_media.mediatype.manager'
+
+    MandarinMedien\MMMediaBundle\Controller\:
+      resource: "../../Controller"
+      tags: [controller.service_arguments]
 
     form.type.mmmedia_upload:
         class: MandarinMedien\MMMediaBundle\Form\Type\UploadType
         arguments: ["@doctrine.orm.entity_manager"]
+        public: true
         tags:
             - {name: form.type, alias: mmmedia_upload}
 
     form.type.mmmedia_upload_collection:
-            class: MandarinMedien\MMMediaBundle\Form\Type\UploadCollectionType
-            arguments: ["@doctrine.orm.entity_manager"]
-            tags:
-                - {name: form.type, alias: mmmedia_upload_collection}
+        class: MandarinMedien\MMMediaBundle\Form\Type\UploadCollectionType
+        arguments: ["@doctrine.orm.entity_manager"]
+        public: true
+        tags:
+            - {name: form.type, alias: mmmedia_upload_collection}
 
     form.type.hidden_entity:
         class: MandarinMedien\MMMediaBundle\Form\Type\HiddenEntityType
         arguments: ["@doctrine.orm.entity_manager"]
+        public: true
         tags:
             - {name: form.type, alias: entity_hidden}
 
     form.type.hidden_entity_collection:
           class: MandarinMedien\MMMediaBundle\Form\Type\HiddenEntityCollectionType
           arguments: ["@doctrine.orm.entity_manager"]
+          public: true
           tags:
               - {name: form.type, alias: entity_collection_hidden}
 
     form.type_guesser:
           class: MandarinMedien\MMMediaBundle\Form\Guess\MediaFormTypeGuesser
+          public: true
           tags:
               - {name: form.type_guesser}

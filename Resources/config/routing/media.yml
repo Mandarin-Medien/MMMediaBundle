@@ -1,35 +1,35 @@
 media:
     path:     /
-    defaults: { _controller: "MMMediaBundle:Media:index" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::indexAction }
 
 media_show:
     path:     /{id}/show
-    defaults: { _controller: "MMMediaBundle:Media:show" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::showAction }
 
 media_new:
     path:     /new
-    defaults: { _controller: "MMMediaBundle:Media:new" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::newAction }
 
 media_create:
     path:     /create
-    defaults: { _controller: "MMMediaBundle:Media:create" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::createAction }
     methods:  POST
 
 media_edit:
     path:     /{id}/edit
-    defaults: { _controller: "MMMediaBundle:Media:edit" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::editAction }
 
 media_update:
     path:     /{id}/update
-    defaults: { _controller: "MMMediaBundle:Media:update" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::updateAction }
     methods:  [POST, PUT]
 
 media_delete:
     path:     /{id}/delete
-    defaults: { _controller: "MMMediaBundle:Media:delete" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\MediaController::deleteAction }
     methods:  [POST, DELETE]
 
 media_upload:
     path:     /upload
-    defaults: { _controller: "MMMediaBundle:Upload:upload" }
+    defaults: { _controller: MandarinMedien\MMMediaBundle\Controller\UploadController::uploadAction }
     methods:  [POST]
